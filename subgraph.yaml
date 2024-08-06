@@ -1,0 +1,75 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: TransparentUpgradeableProxy
+    network: sepolia
+    source:
+      address: "0xFA6fefD6616b600aC17A5E42403EBE218Ad210E1"
+      abi: TransparentUpgradeableProxy
+      startBlock: 6396800
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AdminChanged
+        - BeaconUpgraded
+        - Upgraded
+        - Initialized
+        - Issuanced
+        - OwnershipTransferred
+        - Paused
+        - Redemption
+        - RequestIssuance
+        - RequestRedemption
+        - Unpaused
+      abis:
+        - name: TransparentUpgradeableProxy
+          file: ./abis/TransparentUpgradeableProxy.json
+      eventHandlers:
+        - event: AdminChanged(address,address)
+          handler: handleAdminChanged
+        - event: BeaconUpgraded(indexed address)
+          handler: handleBeaconUpgraded
+        - event: Upgraded(indexed address)
+          handler: handleUpgraded
+        - event: RequestIssuance(indexed uint256,indexed address,address,uint256,uint256,uint256)
+          handler: handleRequestIssuance
+        - event: RequestRedemption(indexed uint256,indexed address,address,uint256,uint256,uint256)
+          handler: handleRequestRedemption
+        - event: Unpaused(address)
+          handler: handleUnpaused
+      file: ./src/transparent-upgradeable-proxy.ts
+  - kind: ethereum
+    name: TransparentUpgradeableProxyAnfi
+    network: sepolia
+    source:
+      address: "0x7427E998D4db46E15f831e4Cff0393Ebb277c637"
+      abi: TransparentUpgradeableProxy
+      startBlock: 5296329
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Issuanced
+        - Paused
+        - Redemption
+        - Unpaused
+      abis:
+        - name: TransparentUpgradeableProxy
+          file: ./abis/TransparentUpgradeableProxy.json
+      eventHandlers:
+        - event: Issuanced(indexed uint256,indexed address,address,uint256,uint256,uint256)
+          handler: handleIssuanced
+        - event: Paused(address)
+          handler: handlePaused
+        - event: Redemption(indexed uint256,indexed address,address,uint256,uint256,uint256)
+          handler: handleRedemption
+        - event: Unpaused(address)
+          handler: handleUnpaused
+      file: ./src/index-factory.ts
