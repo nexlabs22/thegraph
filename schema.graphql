@@ -1,29 +1,52 @@
-type AdminChanged @entity(immutable: true) {
+type ChainlinkCancelled @entity(immutable: true) {
   id: Bytes!
-  previousAdmin: Bytes! # address
-  newAdmin: Bytes! # address
+  IndexFactory_id: Bytes! # bytes32
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
 
-type BeaconUpgraded @entity(immutable: true) {
+type ChainlinkFulfilled @entity(immutable: true) {
   id: Bytes!
-  beacon: Bytes! # address
+  IndexFactory_id: Bytes! # bytes32
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
 
-type Upgraded @entity(immutable: true) {
+type ChainlinkRequested @entity(immutable: true) {
   id: Bytes!
-  implementation: Bytes! # address
+  IndexFactory_id: Bytes! # bytes32
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
 
-type Issuanced @entity(immutable: true) {
+type FeeRateSet @entity(immutable: true) {
+  id: Bytes!
+  feeRatePerDayScaled: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type FeeReceiverSet @entity(immutable: true) {
+  id: Bytes!
+  feeReceiver: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ANFIInitialized @entity(immutable: true) {
+  id: Bytes!
+  version: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ANFIIssuanced @entity(immutable: true) {
   id: Bytes!
   user: Bytes! # address
   inputToken: Bytes! # address
@@ -35,7 +58,42 @@ type Issuanced @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type OwnershipTransferred @entity(immutable: true) {
+type MethodologistSet @entity(immutable: true) {
+  id: Bytes!
+  methodologist: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MethodologySet @entity(immutable: true) {
+  id: Bytes!
+  methodology: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MintFeeToReceiver @entity(immutable: true) {
+  id: Bytes!
+  feeReceiver: Bytes! # address
+  timestamp: BigInt! # uint256
+  totalSupply: BigInt! # uint256
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MinterSet @entity(immutable: true) {
+  id: Bytes!
+  minter: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ANFIOwnershipTransferred @entity(immutable: true) {
   id: Bytes!
   previousOwner: Bytes! # address
   newOwner: Bytes! # address
@@ -44,7 +102,7 @@ type OwnershipTransferred @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type Paused @entity(immutable: true) {
+type ANFIPaused @entity(immutable: true) {
   id: Bytes!
   account: Bytes! # address
   blockNumber: BigInt!
@@ -52,8 +110,84 @@ type Paused @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type Redemption @entity(immutable: true) {
+type ANFIRedemption @entity(immutable: true) {
   id: Bytes!
+  user: Bytes! # address
+  outputToken: Bytes! # address
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  time: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SupplyCeilingSet @entity(immutable: true) {
+  id: Bytes!
+  supplyCeiling: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ToggledRestricted @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  isRestricted: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ANFIUnpaused @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+type CR5Initialized @entity(immutable: true) {
+  id: Bytes!
+  version: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CR5Issuanced @entity(immutable: true) {
+  id: Bytes!
+  messageId: Bytes! # bytes32
+  nonce: BigInt! # uint256
+  user: Bytes! # address
+  inputToken: Bytes! # address
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  time: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MessageSent @entity(immutable: true) {
+  id: Bytes!
+  messageId: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CR5OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CR5Redemption @entity(immutable: true) {
+  id: Bytes!
+  messageId: Bytes! # bytes32
   nonce: BigInt! # uint256
   user: Bytes! # address
   outputToken: Bytes! # address
@@ -65,7 +199,42 @@ type Redemption @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type RequestIssuance @entity(immutable: true) {
+type CR5RequestIssuance @entity(immutable: true) {
+  id: Bytes!
+  messageId: Bytes! # bytes32
+  nonce: BigInt! # uint256
+  user: Bytes! # address
+  inputToken: Bytes! # address
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  time: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CR5RequestRedemption @entity(immutable: true) {
+  id: Bytes!
+  messageId: Bytes! # bytes32
+  nonce: BigInt! # uint256
+  user: Bytes! # address
+  outputToken: Bytes! # address
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  time: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+type MAG7Initialized @entity(immutable: true) {
+  id: Bytes!
+  version: BigInt! # uint64
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MAG7Issuanced @entity(immutable: true) {
   id: Bytes!
   nonce: BigInt! # uint256
   user: Bytes! # address
@@ -78,7 +247,24 @@ type RequestIssuance @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type RequestRedemption @entity(immutable: true) {
+type MAG7OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MAG7Paused @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MAG7Redemption @entity(immutable: true) {
   id: Bytes!
   nonce: BigInt! # uint256
   user: Bytes! # address
@@ -91,7 +277,33 @@ type RequestRedemption @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type Unpaused @entity(immutable: true) {
+type MAG7RequestIssuance @entity(immutable: true) {
+  id: Bytes!
+  nonce: BigInt! # uint256
+  user: Bytes! # address
+  inputToken: Bytes! # address
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  time: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MAG7RequestRedemption @entity(immutable: true) {
+  id: Bytes!
+  nonce: BigInt! # uint256
+  user: Bytes! # address
+  outputToken: Bytes! # address
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  time: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MAG7Unpaused @entity(immutable: true) {
   id: Bytes!
   account: Bytes! # address
   blockNumber: BigInt!

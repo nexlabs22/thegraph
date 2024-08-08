@@ -5,71 +5,153 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: TransparentUpgradeableProxy
-    network: sepolia
-    source:
-      address: "0xFA6fefD6616b600aC17A5E42403EBE218Ad210E1"
-      abi: TransparentUpgradeableProxy
-      startBlock: 6396800
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - AdminChanged
-        - BeaconUpgraded
-        - Upgraded
-        - Initialized
-        - Issuanced
-        - OwnershipTransferred
-        - Paused
-        - Redemption
-        - RequestIssuance
-        - RequestRedemption
-        - Unpaused
-      abis:
-        - name: TransparentUpgradeableProxy
-          file: ./abis/TransparentUpgradeableProxy.json
-      eventHandlers:
-        - event: AdminChanged(address,address)
-          handler: handleAdminChanged
-        - event: BeaconUpgraded(indexed address)
-          handler: handleBeaconUpgraded
-        - event: Upgraded(indexed address)
-          handler: handleUpgraded
-        - event: RequestIssuance(indexed uint256,indexed address,address,uint256,uint256,uint256)
-          handler: handleRequestIssuance
-        - event: RequestRedemption(indexed uint256,indexed address,address,uint256,uint256,uint256)
-          handler: handleRequestRedemption
-        - event: Unpaused(address)
-          handler: handleUnpaused
-      file: ./src/transparent-upgradeable-proxy.ts
-  - kind: ethereum
-    name: TransparentUpgradeableProxyAnfi
+    name: IndexFactoryAnfi
     network: sepolia
     source:
       address: "0x7427E998D4db46E15f831e4Cff0393Ebb277c637"
-      abi: TransparentUpgradeableProxy
+      abi: IndexFactoryAnfi
       startBlock: 5296329
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - Issuanced
-        - Paused
-        - Redemption
-        - Unpaused
+        - ChainlinkCancelled
+        - ChainlinkFulfilled
+        - ChainlinkRequested
+        - FeeRateSet
+        - FeeReceiverSet
+        - ANFIInitialized
+        - ANFIIssuanced
+        - MethodologistSet
+        - MethodologySet
+        - MintFeeToReceiver
+        - MinterSet
+        - ANFIOwnershipTransferred
+        - ANFIPaused
+        - ANFIRedemption
+        - SupplyCeilingSet
+        - ToggledRestricted
+        - ANFIUnpaused
       abis:
-        - name: TransparentUpgradeableProxy
-          file: ./abis/TransparentUpgradeableProxy.json
+        - name: IndexFactoryAnfi
+          file: ./abis/IndexFactoryAnfi.json
       eventHandlers:
+        - event: ChainlinkCancelled(indexed bytes32)
+          handler: handleChainlinkCancelled
+        - event: ChainlinkFulfilled(indexed bytes32)
+          handler: handleChainlinkFulfilled
+        - event: ChainlinkRequested(indexed bytes32)
+          handler: handleChainlinkRequested
+        - event: FeeRateSet(indexed uint256)
+          handler: handleFeeRateSet
+        - event: FeeReceiverSet(indexed address)
+          handler: handleFeeReceiverSet
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: Issuanced(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleIssuanced
+        - event: MethodologistSet(indexed address)
+          handler: handleMethodologistSet
+        - event: MethodologySet(string)
+          handler: handleMethodologySet
+        - event: MintFeeToReceiver(address,uint256,uint256,uint256)
+          handler: handleMintFeeToReceiver
+        - event: MinterSet(indexed address)
+          handler: handleMinterSet
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Paused(address)
+          handler: handlePaused
+        - event: Redemption(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleRedemption
+        - event: SupplyCeilingSet(uint256)
+          handler: handleSupplyCeilingSet
+        - event: ToggledRestricted(indexed address,bool)
+          handler: handleToggledRestricted
+        - event: Unpaused(address)
+          handler: handleUnpaused
+      file: ./src/index-factory-anfi.ts
+  - kind: ethereum
+    name: IndexFactoryCR5
+    network: sepolia
+    source:
+      address: "0xCd16eDa751CcC77f780E06B7Af9aeD0E90a51586"
+      abi: IndexFactoryCR5
+      startBlock: 5565101
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - CR5Initialized
+        - CR5Issuanced
+        - MessageSent
+        - CR5OwnershipTransferred
+        - CR5Redemption
+        - CR5RequestIssuance
+        - CR5RequestRedemption
+      abis:
+        - name: IndexFactoryCR5
+          file: ./abis/IndexFactoryCR5.json
+      eventHandlers:
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: Issuanced(indexed bytes32,indexed uint256,indexed
+            address,address,uint256,uint256,uint256)
+          handler: handleIssuanced
+        - event: MessageSent(bytes32)
+          handler: handleMessageSent
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Redemption(indexed bytes32,indexed uint256,indexed
+            address,address,uint256,uint256,uint256)
+          handler: handleRedemption
+        - event: RequestIssuance(indexed bytes32,indexed uint256,indexed
+            address,address,uint256,uint256,uint256)
+          handler: handleRequestIssuance
+        - event: RequestRedemption(indexed bytes32,indexed uint256,indexed
+            address,address,uint256,uint256,uint256)
+          handler: handleRequestRedemption
+      file: ./src/index-factory-cr5.ts
+  - kind: ethereum
+    name: IndexFactoryMAG7
+    network: sepolia
+    source:
+      address: "0xFA6fefD6616b600aC17A5E42403EBE218Ad210E1"
+      abi: IndexFactoryMAG7
+      startBlock: 6396800
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MAG7Initialized
+        - MAG7Issuanced
+        - MAG7OwnershipTransferred
+        - MAG7Paused
+        - MAG7Redemption
+        - MAG7Unpaused
+        - MAG7RequestIssuance
+        - MAG7RequestRedemption
+      abis:
+        - name: IndexFactoryMAG7
+          file: ./abis/IndexFactoryMAG7.json
+      eventHandlers:
+        - event: Initialized(uint64)
+          handler: handleInitialized
         - event: Issuanced(indexed uint256,indexed address,address,uint256,uint256,uint256)
           handler: handleIssuanced
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
         - event: Paused(address)
           handler: handlePaused
         - event: Redemption(indexed uint256,indexed address,address,uint256,uint256,uint256)
           handler: handleRedemption
+        - event: RequestIssuance(indexed uint256,indexed address,address,uint256,uint256,uint256)
+          handler: handleRequestIssuance
+        - event: RequestRedemption(indexed uint256,indexed address,address,uint256,uint256,uint256)
+          handler: handleRequestRedemption
         - event: Unpaused(address)
           handler: handleUnpaused
-      file: ./src/index-factory.ts
+      file: ./src/index-factory-mag7.ts
