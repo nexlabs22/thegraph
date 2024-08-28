@@ -1,14 +1,92 @@
 import { newMockEvent } from "matchstick-as"
 import { ethereum, Bytes, BigInt, Address } from "@graphprotocol/graph-ts"
 import {
+  ChainlinkCancelled,
+  ChainlinkFulfilled,
+  ChainlinkRequested,
+  FeeRateSet,
+  FeeReceiverSet,
   Initialized,
   Issuanced,
-  MessageSent,
+  MethodologistSet,
+  MethodologySet,
+  MintFeeToReceiver,
+  MinterSet,
   OwnershipTransferred,
+  Paused,
   Redemption,
-  RequestIssuance,
-  RequestRedemption
-} from "../generated/IndexFactoryCR5/IndexFactoryCR5"
+  SupplyCeilingSet,
+  ToggledRestricted,
+  Unpaused
+} from "../generated/IndexFactoryARBEI/IndexFactoryARBEI"
+
+export function createChainlinkCancelledEvent(id: Bytes): ChainlinkCancelled {
+  let chainlinkCancelledEvent = changetype<ChainlinkCancelled>(newMockEvent())
+
+  chainlinkCancelledEvent.parameters = new Array()
+
+  chainlinkCancelledEvent.parameters.push(
+    new ethereum.EventParam("id", ethereum.Value.fromFixedBytes(id))
+  )
+
+  return chainlinkCancelledEvent
+}
+
+export function createChainlinkFulfilledEvent(id: Bytes): ChainlinkFulfilled {
+  let chainlinkFulfilledEvent = changetype<ChainlinkFulfilled>(newMockEvent())
+
+  chainlinkFulfilledEvent.parameters = new Array()
+
+  chainlinkFulfilledEvent.parameters.push(
+    new ethereum.EventParam("id", ethereum.Value.fromFixedBytes(id))
+  )
+
+  return chainlinkFulfilledEvent
+}
+
+export function createChainlinkRequestedEvent(id: Bytes): ChainlinkRequested {
+  let chainlinkRequestedEvent = changetype<ChainlinkRequested>(newMockEvent())
+
+  chainlinkRequestedEvent.parameters = new Array()
+
+  chainlinkRequestedEvent.parameters.push(
+    new ethereum.EventParam("id", ethereum.Value.fromFixedBytes(id))
+  )
+
+  return chainlinkRequestedEvent
+}
+
+export function createFeeRateSetEvent(feeRatePerDayScaled: BigInt): FeeRateSet {
+  let feeRateSetEvent = changetype<FeeRateSet>(newMockEvent())
+
+  feeRateSetEvent.parameters = new Array()
+
+  feeRateSetEvent.parameters.push(
+    new ethereum.EventParam(
+      "feeRatePerDayScaled",
+      ethereum.Value.fromUnsignedBigInt(feeRatePerDayScaled)
+    )
+  )
+
+  return feeRateSetEvent
+}
+
+export function createFeeReceiverSetEvent(
+  feeReceiver: Address
+): FeeReceiverSet {
+  let feeReceiverSetEvent = changetype<FeeReceiverSet>(newMockEvent())
+
+  feeReceiverSetEvent.parameters = new Array()
+
+  feeReceiverSetEvent.parameters.push(
+    new ethereum.EventParam(
+      "feeReceiver",
+      ethereum.Value.fromAddress(feeReceiver)
+    )
+  )
+
+  return feeReceiverSetEvent
+}
 
 export function createInitializedEvent(version: i32): Initialized {
   let initializedEvent = changetype<Initialized>(newMockEvent())
@@ -26,8 +104,6 @@ export function createInitializedEvent(version: i32): Initialized {
 }
 
 export function createIssuancedEvent(
-  messageId: Bytes,
-  nonce: BigInt,
   user: Address,
   inputToken: Address,
   inputAmount: BigInt,
@@ -38,15 +114,6 @@ export function createIssuancedEvent(
 
   issuancedEvent.parameters = new Array()
 
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam(
-      "messageId",
-      ethereum.Value.fromFixedBytes(messageId)
-    )
-  )
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam("nonce", ethereum.Value.fromUnsignedBigInt(nonce))
-  )
   issuancedEvent.parameters.push(
     new ethereum.EventParam("user", ethereum.Value.fromAddress(user))
   )
@@ -75,19 +142,83 @@ export function createIssuancedEvent(
   return issuancedEvent
 }
 
-export function createMessageSentEvent(messageId: Bytes): MessageSent {
-  let messageSentEvent = changetype<MessageSent>(newMockEvent())
+export function createMethodologistSetEvent(
+  methodologist: Address
+): MethodologistSet {
+  let methodologistSetEvent = changetype<MethodologistSet>(newMockEvent())
 
-  messageSentEvent.parameters = new Array()
+  methodologistSetEvent.parameters = new Array()
 
-  messageSentEvent.parameters.push(
+  methodologistSetEvent.parameters.push(
     new ethereum.EventParam(
-      "messageId",
-      ethereum.Value.fromFixedBytes(messageId)
+      "methodologist",
+      ethereum.Value.fromAddress(methodologist)
     )
   )
 
-  return messageSentEvent
+  return methodologistSetEvent
+}
+
+export function createMethodologySetEvent(methodology: string): MethodologySet {
+  let methodologySetEvent = changetype<MethodologySet>(newMockEvent())
+
+  methodologySetEvent.parameters = new Array()
+
+  methodologySetEvent.parameters.push(
+    new ethereum.EventParam(
+      "methodology",
+      ethereum.Value.fromString(methodology)
+    )
+  )
+
+  return methodologySetEvent
+}
+
+export function createMintFeeToReceiverEvent(
+  feeReceiver: Address,
+  timestamp: BigInt,
+  totalSupply: BigInt,
+  amount: BigInt
+): MintFeeToReceiver {
+  let mintFeeToReceiverEvent = changetype<MintFeeToReceiver>(newMockEvent())
+
+  mintFeeToReceiverEvent.parameters = new Array()
+
+  mintFeeToReceiverEvent.parameters.push(
+    new ethereum.EventParam(
+      "feeReceiver",
+      ethereum.Value.fromAddress(feeReceiver)
+    )
+  )
+  mintFeeToReceiverEvent.parameters.push(
+    new ethereum.EventParam(
+      "timestamp",
+      ethereum.Value.fromUnsignedBigInt(timestamp)
+    )
+  )
+  mintFeeToReceiverEvent.parameters.push(
+    new ethereum.EventParam(
+      "totalSupply",
+      ethereum.Value.fromUnsignedBigInt(totalSupply)
+    )
+  )
+  mintFeeToReceiverEvent.parameters.push(
+    new ethereum.EventParam("amount", ethereum.Value.fromUnsignedBigInt(amount))
+  )
+
+  return mintFeeToReceiverEvent
+}
+
+export function createMinterSetEvent(minter: Address): MinterSet {
+  let minterSetEvent = changetype<MinterSet>(newMockEvent())
+
+  minterSetEvent.parameters = new Array()
+
+  minterSetEvent.parameters.push(
+    new ethereum.EventParam("minter", ethereum.Value.fromAddress(minter))
+  )
+
+  return minterSetEvent
 }
 
 export function createOwnershipTransferredEvent(
@@ -113,9 +244,19 @@ export function createOwnershipTransferredEvent(
   return ownershipTransferredEvent
 }
 
+export function createPausedEvent(account: Address): Paused {
+  let pausedEvent = changetype<Paused>(newMockEvent())
+
+  pausedEvent.parameters = new Array()
+
+  pausedEvent.parameters.push(
+    new ethereum.EventParam("account", ethereum.Value.fromAddress(account))
+  )
+
+  return pausedEvent
+}
+
 export function createRedemptionEvent(
-  messageId: Bytes,
-  nonce: BigInt,
   user: Address,
   outputToken: Address,
   inputAmount: BigInt,
@@ -126,15 +267,6 @@ export function createRedemptionEvent(
 
   redemptionEvent.parameters = new Array()
 
-  redemptionEvent.parameters.push(
-    new ethereum.EventParam(
-      "messageId",
-      ethereum.Value.fromFixedBytes(messageId)
-    )
-  )
-  redemptionEvent.parameters.push(
-    new ethereum.EventParam("nonce", ethereum.Value.fromUnsignedBigInt(nonce))
-  )
   redemptionEvent.parameters.push(
     new ethereum.EventParam("user", ethereum.Value.fromAddress(user))
   )
@@ -163,102 +295,52 @@ export function createRedemptionEvent(
   return redemptionEvent
 }
 
-export function createRequestIssuanceEvent(
-  messageId: Bytes,
-  nonce: BigInt,
-  user: Address,
-  inputToken: Address,
-  inputAmount: BigInt,
-  outputAmount: BigInt,
-  time: BigInt
-): RequestIssuance {
-  let requestIssuanceEvent = changetype<RequestIssuance>(newMockEvent())
+export function createSupplyCeilingSetEvent(
+  supplyCeiling: BigInt
+): SupplyCeilingSet {
+  let supplyCeilingSetEvent = changetype<SupplyCeilingSet>(newMockEvent())
 
-  requestIssuanceEvent.parameters = new Array()
+  supplyCeilingSetEvent.parameters = new Array()
 
-  requestIssuanceEvent.parameters.push(
+  supplyCeilingSetEvent.parameters.push(
     new ethereum.EventParam(
-      "messageId",
-      ethereum.Value.fromFixedBytes(messageId)
+      "supplyCeiling",
+      ethereum.Value.fromUnsignedBigInt(supplyCeiling)
     )
-  )
-  requestIssuanceEvent.parameters.push(
-    new ethereum.EventParam("nonce", ethereum.Value.fromUnsignedBigInt(nonce))
-  )
-  requestIssuanceEvent.parameters.push(
-    new ethereum.EventParam("user", ethereum.Value.fromAddress(user))
-  )
-  requestIssuanceEvent.parameters.push(
-    new ethereum.EventParam(
-      "inputToken",
-      ethereum.Value.fromAddress(inputToken)
-    )
-  )
-  requestIssuanceEvent.parameters.push(
-    new ethereum.EventParam(
-      "inputAmount",
-      ethereum.Value.fromUnsignedBigInt(inputAmount)
-    )
-  )
-  requestIssuanceEvent.parameters.push(
-    new ethereum.EventParam(
-      "outputAmount",
-      ethereum.Value.fromUnsignedBigInt(outputAmount)
-    )
-  )
-  requestIssuanceEvent.parameters.push(
-    new ethereum.EventParam("time", ethereum.Value.fromUnsignedBigInt(time))
   )
 
-  return requestIssuanceEvent
+  return supplyCeilingSetEvent
 }
 
-export function createRequestRedemptionEvent(
-  messageId: Bytes,
-  nonce: BigInt,
-  user: Address,
-  outputToken: Address,
-  inputAmount: BigInt,
-  outputAmount: BigInt,
-  time: BigInt
-): RequestRedemption {
-  let requestRedemptionEvent = changetype<RequestRedemption>(newMockEvent())
+export function createToggledRestrictedEvent(
+  account: Address,
+  isRestricted: boolean
+): ToggledRestricted {
+  let toggledRestrictedEvent = changetype<ToggledRestricted>(newMockEvent())
 
-  requestRedemptionEvent.parameters = new Array()
+  toggledRestrictedEvent.parameters = new Array()
 
-  requestRedemptionEvent.parameters.push(
+  toggledRestrictedEvent.parameters.push(
+    new ethereum.EventParam("account", ethereum.Value.fromAddress(account))
+  )
+  toggledRestrictedEvent.parameters.push(
     new ethereum.EventParam(
-      "messageId",
-      ethereum.Value.fromFixedBytes(messageId)
+      "isRestricted",
+      ethereum.Value.fromBoolean(isRestricted)
     )
-  )
-  requestRedemptionEvent.parameters.push(
-    new ethereum.EventParam("nonce", ethereum.Value.fromUnsignedBigInt(nonce))
-  )
-  requestRedemptionEvent.parameters.push(
-    new ethereum.EventParam("user", ethereum.Value.fromAddress(user))
-  )
-  requestRedemptionEvent.parameters.push(
-    new ethereum.EventParam(
-      "outputToken",
-      ethereum.Value.fromAddress(outputToken)
-    )
-  )
-  requestRedemptionEvent.parameters.push(
-    new ethereum.EventParam(
-      "inputAmount",
-      ethereum.Value.fromUnsignedBigInt(inputAmount)
-    )
-  )
-  requestRedemptionEvent.parameters.push(
-    new ethereum.EventParam(
-      "outputAmount",
-      ethereum.Value.fromUnsignedBigInt(outputAmount)
-    )
-  )
-  requestRedemptionEvent.parameters.push(
-    new ethereum.EventParam("time", ethereum.Value.fromUnsignedBigInt(time))
   )
 
-  return requestRedemptionEvent
+  return toggledRestrictedEvent
+}
+
+export function createUnpausedEvent(account: Address): Unpaused {
+  let unpausedEvent = changetype<Unpaused>(newMockEvent())
+
+  unpausedEvent.parameters = new Array()
+
+  unpausedEvent.parameters.push(
+    new ethereum.EventParam("account", ethereum.Value.fromAddress(account))
+  )
+
+  return unpausedEvent
 }

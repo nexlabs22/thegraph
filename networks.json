@@ -9,8 +9,16 @@
       "startBlock": 5565101
     },
     "IndexFactoryMAG7": {
-      "address": "0xFA6fefD6616b600aC17A5E42403EBE218Ad210E1",
-      "startBlock": 6396800
+      "address": "0x5EBD4Ac25ADbb238941086b7e2a87672f93919a4",
+      "startBlock": 6513703
+    },
+    "IndexFactoryProcessorMAG7": {
+      "address": "0x8250b30Ae818Ab30d5A03E893Cdc850bdA08E638",
+      "startBlock": 6513718
+    },
+    "IndexFactoryARBEI": {
+      "address": "0xB5f11EAd535622Fa4EA1CA665e38ab2b4B1B2F9B",
+      "startBlock": 6583560
     }
   }
 }
