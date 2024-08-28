@@ -54,8 +54,8 @@ export class ChainlinkCancelled extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
-  get IndexFactory_id(): Bytes {
-    let value = this.get("IndexFactory_id");
+  get ARBEI_id(): Bytes {
+    let value = this.get("ARBEI_id");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
@@ -3862,7 +3862,7 @@ export class MAG7Unpaused extends Entity {
   }
 }
 
-export class IndexFactoryChainlinkCancelled extends Entity {
+export class ARBEIChainlinkCancelled extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -3872,30 +3872,30 @@ export class IndexFactoryChainlinkCancelled extends Entity {
     let id = this.get("id");
     assert(
       id != null,
-      "Cannot save IndexFactoryChainlinkCancelled entity without an ID",
+      "Cannot save ARBEIChainlinkCancelled entity without an ID",
     );
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IndexFactoryChainlinkCancelled must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIChainlinkCancelled must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set(
-        "IndexFactoryChainlinkCancelled",
+        "ARBEIChainlinkCancelled",
         id.toBytes().toHexString(),
         this,
       );
     }
   }
 
-  static loadInBlock(id: Bytes): IndexFactoryChainlinkCancelled | null {
-    return changetype<IndexFactoryChainlinkCancelled | null>(
-      store.get_in_block("IndexFactoryChainlinkCancelled", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEIChainlinkCancelled | null {
+    return changetype<ARBEIChainlinkCancelled | null>(
+      store.get_in_block("ARBEIChainlinkCancelled", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IndexFactoryChainlinkCancelled | null {
-    return changetype<IndexFactoryChainlinkCancelled | null>(
-      store.get("IndexFactoryChainlinkCancelled", id.toHexString()),
+  static load(id: Bytes): ARBEIChainlinkCancelled | null {
+    return changetype<ARBEIChainlinkCancelled | null>(
+      store.get("ARBEIChainlinkCancelled", id.toHexString()),
     );
   }
 
@@ -3965,7 +3965,7 @@ export class IndexFactoryChainlinkCancelled extends Entity {
   }
 }
 
-export class IndexFactoryChainlinkFulfilled extends Entity {
+export class ARBEIChainlinkFulfilled extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -3975,30 +3975,30 @@ export class IndexFactoryChainlinkFulfilled extends Entity {
     let id = this.get("id");
     assert(
       id != null,
-      "Cannot save IndexFactoryChainlinkFulfilled entity without an ID",
+      "Cannot save ARBEIChainlinkFulfilled entity without an ID",
     );
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IndexFactoryChainlinkFulfilled must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIChainlinkFulfilled must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set(
-        "IndexFactoryChainlinkFulfilled",
+        "ARBEIChainlinkFulfilled",
         id.toBytes().toHexString(),
         this,
       );
     }
   }
 
-  static loadInBlock(id: Bytes): IndexFactoryChainlinkFulfilled | null {
-    return changetype<IndexFactoryChainlinkFulfilled | null>(
-      store.get_in_block("IndexFactoryChainlinkFulfilled", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEIChainlinkFulfilled | null {
+    return changetype<ARBEIChainlinkFulfilled | null>(
+      store.get_in_block("ARBEIChainlinkFulfilled", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IndexFactoryChainlinkFulfilled | null {
-    return changetype<IndexFactoryChainlinkFulfilled | null>(
-      store.get("IndexFactoryChainlinkFulfilled", id.toHexString()),
+  static load(id: Bytes): ARBEIChainlinkFulfilled | null {
+    return changetype<ARBEIChainlinkFulfilled | null>(
+      store.get("ARBEIChainlinkFulfilled", id.toHexString()),
     );
   }
 
@@ -4068,7 +4068,7 @@ export class IndexFactoryChainlinkFulfilled extends Entity {
   }
 }
 
-export class IndexFactoryChainlinkRequested extends Entity {
+export class ARBEIChainlinkRequested extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -4078,30 +4078,30 @@ export class IndexFactoryChainlinkRequested extends Entity {
     let id = this.get("id");
     assert(
       id != null,
-      "Cannot save IndexFactoryChainlinkRequested entity without an ID",
+      "Cannot save ARBEIChainlinkRequested entity without an ID",
     );
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IndexFactoryChainlinkRequested must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIChainlinkRequested must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set(
-        "IndexFactoryChainlinkRequested",
+        "ARBEIChainlinkRequested",
         id.toBytes().toHexString(),
         this,
       );
     }
   }
 
-  static loadInBlock(id: Bytes): IndexFactoryChainlinkRequested | null {
-    return changetype<IndexFactoryChainlinkRequested | null>(
-      store.get_in_block("IndexFactoryChainlinkRequested", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEIChainlinkRequested | null {
+    return changetype<ARBEIChainlinkRequested | null>(
+      store.get_in_block("ARBEIChainlinkRequested", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IndexFactoryChainlinkRequested | null {
-    return changetype<IndexFactoryChainlinkRequested | null>(
-      store.get("IndexFactoryChainlinkRequested", id.toHexString()),
+  static load(id: Bytes): ARBEIChainlinkRequested | null {
+    return changetype<ARBEIChainlinkRequested | null>(
+      store.get("ARBEIChainlinkRequested", id.toHexString()),
     );
   }
 
@@ -4171,7 +4171,7 @@ export class IndexFactoryChainlinkRequested extends Entity {
   }
 }
 
-export class IndexFactoryFeeRateSet extends Entity {
+export class ARBEIFeeRateSet extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -4181,26 +4181,26 @@ export class IndexFactoryFeeRateSet extends Entity {
     let id = this.get("id");
     assert(
       id != null,
-      "Cannot save IndexFactoryFeeRateSet entity without an ID",
+      "Cannot save ARBEIFeeRateSet entity without an ID",
     );
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IndexFactoryFeeRateSet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIFeeRateSet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("IndexFactoryFeeRateSet", id.toBytes().toHexString(), this);
+      store.set("ARBEIFeeRateSet", id.toBytes().toHexString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): IndexFactoryFeeRateSet | null {
-    return changetype<IndexFactoryFeeRateSet | null>(
-      store.get_in_block("IndexFactoryFeeRateSet", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEIFeeRateSet | null {
+    return changetype<ARBEIFeeRateSet | null>(
+      store.get_in_block("ARBEIFeeRateSet", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IndexFactoryFeeRateSet | null {
-    return changetype<IndexFactoryFeeRateSet | null>(
-      store.get("IndexFactoryFeeRateSet", id.toHexString()),
+  static load(id: Bytes): ARBEIFeeRateSet | null {
+    return changetype<ARBEIFeeRateSet | null>(
+      store.get("ARBEIFeeRateSet", id.toHexString()),
     );
   }
 
@@ -4270,7 +4270,7 @@ export class IndexFactoryFeeRateSet extends Entity {
   }
 }
 
-export class IndexFactoryFeeReceiverSet extends Entity {
+export class ARBEIFeeReceiverSet extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -4280,26 +4280,26 @@ export class IndexFactoryFeeReceiverSet extends Entity {
     let id = this.get("id");
     assert(
       id != null,
-      "Cannot save IndexFactoryFeeReceiverSet entity without an ID",
+      "Cannot save ARBEIFeeReceiverSet entity without an ID",
     );
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IndexFactoryFeeReceiverSet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIFeeReceiverSet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("IndexFactoryFeeReceiverSet", id.toBytes().toHexString(), this);
+      store.set("ARBEIFeeReceiverSet", id.toBytes().toHexString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): IndexFactoryFeeReceiverSet | null {
-    return changetype<IndexFactoryFeeReceiverSet | null>(
-      store.get_in_block("IndexFactoryFeeReceiverSet", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEIFeeReceiverSet | null {
+    return changetype<ARBEIFeeReceiverSet | null>(
+      store.get_in_block("ARBEIFeeReceiverSet", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IndexFactoryFeeReceiverSet | null {
-    return changetype<IndexFactoryFeeReceiverSet | null>(
-      store.get("IndexFactoryFeeReceiverSet", id.toHexString()),
+  static load(id: Bytes): ARBEIFeeReceiverSet | null {
+    return changetype<ARBEIFeeReceiverSet | null>(
+      store.get("ARBEIFeeReceiverSet", id.toHexString()),
     );
   }
 
@@ -4465,7 +4465,7 @@ export class Initialized extends Entity {
   }
 }
 
-export class Issuanced extends Entity {
+export class ARBEIIssuanced extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -4473,24 +4473,24 @@ export class Issuanced extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save Issuanced entity without an ID");
+    assert(id != null, "Cannot save ARBEIIssuanced entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type Issuanced must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIIssuanced must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("Issuanced", id.toBytes().toHexString(), this);
+      store.set("ARBEIIssuanced", id.toBytes().toHexString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): Issuanced | null {
-    return changetype<Issuanced | null>(
+  static loadInBlock(id: Bytes): ARBEIIssuanced | null {
+    return changetype<ARBEIIssuanced | null>(
       store.get_in_block("Issuanced", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): Issuanced | null {
-    return changetype<Issuanced | null>(
+  static load(id: Bytes): ARBEIIssuanced | null {
+    return changetype<ARBEIIssuanced | null>(
       store.get("Issuanced", id.toHexString()),
     );
   }
@@ -4613,7 +4613,7 @@ export class Issuanced extends Entity {
   }
 }
 
-export class IndexFactoryMethodologistSet extends Entity {
+export class ARBEIMethodologistSet extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -4623,30 +4623,30 @@ export class IndexFactoryMethodologistSet extends Entity {
     let id = this.get("id");
     assert(
       id != null,
-      "Cannot save IndexFactoryMethodologistSet entity without an ID",
+      "Cannot save ARBEIMethodologistSet entity without an ID",
     );
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IndexFactoryMethodologistSet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIMethodologistSet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set(
-        "IndexFactoryMethodologistSet",
+        "ARBEIMethodologistSet",
         id.toBytes().toHexString(),
         this,
       );
     }
   }
 
-  static loadInBlock(id: Bytes): IndexFactoryMethodologistSet | null {
-    return changetype<IndexFactoryMethodologistSet | null>(
-      store.get_in_block("IndexFactoryMethodologistSet", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEIMethodologistSet | null {
+    return changetype<ARBEIMethodologistSet | null>(
+      store.get_in_block("ARBEIMethodologistSet", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IndexFactoryMethodologistSet | null {
-    return changetype<IndexFactoryMethodologistSet | null>(
-      store.get("IndexFactoryMethodologistSet", id.toHexString()),
+  static load(id: Bytes): ARBEIMethodologistSet | null {
+    return changetype<ARBEIMethodologistSet | null>(
+      store.get("ARBEIMethodologistSet", id.toHexString()),
     );
   }
 
@@ -4716,7 +4716,7 @@ export class IndexFactoryMethodologistSet extends Entity {
   }
 }
 
-export class IndexFactoryMethodologySet extends Entity {
+export class ARBEIMethodologySet extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -4726,26 +4726,26 @@ export class IndexFactoryMethodologySet extends Entity {
     let id = this.get("id");
     assert(
       id != null,
-      "Cannot save IndexFactoryMethodologySet entity without an ID",
+      "Cannot save ARBEIMethodologySet entity without an ID",
     );
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IndexFactoryMethodologySet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIMethodologySet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("IndexFactoryMethodologySet", id.toBytes().toHexString(), this);
+      store.set("ARBEIMethodologySet", id.toBytes().toHexString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): IndexFactoryMethodologySet | null {
-    return changetype<IndexFactoryMethodologySet | null>(
-      store.get_in_block("IndexFactoryMethodologySet", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEIMethodologySet | null {
+    return changetype<ARBEIMethodologySet | null>(
+      store.get_in_block("ARBEIMethodologySet", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IndexFactoryMethodologySet | null {
-    return changetype<IndexFactoryMethodologySet | null>(
-      store.get("IndexFactoryMethodologySet", id.toHexString()),
+  static load(id: Bytes): ARBEIMethodologySet | null {
+    return changetype<ARBEIMethodologySet | null>(
+      store.get("ARBEIMethodologySet", id.toHexString()),
     );
   }
 
@@ -4815,7 +4815,7 @@ export class IndexFactoryMethodologySet extends Entity {
   }
 }
 
-export class IndexFactoryMintFeeToReceiver extends Entity {
+export class ARBEIMintFeeToReceiver extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -4825,30 +4825,30 @@ export class IndexFactoryMintFeeToReceiver extends Entity {
     let id = this.get("id");
     assert(
       id != null,
-      "Cannot save IndexFactoryMintFeeToReceiver entity without an ID",
+      "Cannot save ARBEIMintFeeToReceiver entity without an ID",
     );
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IndexFactoryMintFeeToReceiver must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIMintFeeToReceiver must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set(
-        "IndexFactoryMintFeeToReceiver",
+        "ARBEIMintFeeToReceiver",
         id.toBytes().toHexString(),
         this,
       );
     }
   }
 
-  static loadInBlock(id: Bytes): IndexFactoryMintFeeToReceiver | null {
-    return changetype<IndexFactoryMintFeeToReceiver | null>(
-      store.get_in_block("IndexFactoryMintFeeToReceiver", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEIMintFeeToReceiver | null {
+    return changetype<ARBEIMintFeeToReceiver | null>(
+      store.get_in_block("ARBEIMintFeeToReceiver", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IndexFactoryMintFeeToReceiver | null {
-    return changetype<IndexFactoryMintFeeToReceiver | null>(
-      store.get("IndexFactoryMintFeeToReceiver", id.toHexString()),
+  static load(id: Bytes): ARBEIMintFeeToReceiver | null {
+    return changetype<ARBEIMintFeeToReceiver | null>(
+      store.get("ARBEIMintFeeToReceiver", id.toHexString()),
     );
   }
 
@@ -4957,7 +4957,7 @@ export class IndexFactoryMintFeeToReceiver extends Entity {
   }
 }
 
-export class IndexFactoryMinterSet extends Entity {
+export class ARBEIMinterSet extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -4967,26 +4967,26 @@ export class IndexFactoryMinterSet extends Entity {
     let id = this.get("id");
     assert(
       id != null,
-      "Cannot save IndexFactoryMinterSet entity without an ID",
+      "Cannot save ARBEIMinterSet entity without an ID",
     );
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IndexFactoryMinterSet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIMinterSet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("IndexFactoryMinterSet", id.toBytes().toHexString(), this);
+      store.set("ARBEIMinterSet", id.toBytes().toHexString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): IndexFactoryMinterSet | null {
-    return changetype<IndexFactoryMinterSet | null>(
-      store.get_in_block("IndexFactoryMinterSet", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEIMinterSet | null {
+    return changetype<ARBEIMinterSet | null>(
+      store.get_in_block("ARBEIMinterSet", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IndexFactoryMinterSet | null {
-    return changetype<IndexFactoryMinterSet | null>(
-      store.get("IndexFactoryMinterSet", id.toHexString()),
+  static load(id: Bytes): ARBEIMinterSet | null {
+    return changetype<ARBEIMinterSet | null>(
+      store.get("ARBEIMinterSet", id.toHexString()),
     );
   }
 
@@ -5259,7 +5259,7 @@ export class Paused extends Entity {
   }
 }
 
-export class Redemption extends Entity {
+export class ARBEIRedemption extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -5267,25 +5267,25 @@ export class Redemption extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save Redemption entity without an ID");
+    assert(id != null, "Cannot save ARBEIRedemption entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type Redemption must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIRedemption must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("Redemption", id.toBytes().toHexString(), this);
+      store.set("ARBEIRedemption", id.toBytes().toHexString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): Redemption | null {
-    return changetype<Redemption | null>(
-      store.get_in_block("Redemption", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEIRedemption | null {
+    return changetype<ARBEIRedemption | null>(
+      store.get_in_block("ARBEIRedemption", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): Redemption | null {
-    return changetype<Redemption | null>(
-      store.get("Redemption", id.toHexString()),
+  static load(id: Bytes): ARBEIRedemption | null {
+    return changetype<ARBEIRedemption | null>(
+      store.get("ARBEIRedemption", id.toHexString()),
     );
   }
 
@@ -5407,7 +5407,7 @@ export class Redemption extends Entity {
   }
 }
 
-export class IndexFactorySupplyCeilingSet extends Entity {
+export class ARBEISupplyCeilingSet extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -5417,30 +5417,30 @@ export class IndexFactorySupplyCeilingSet extends Entity {
     let id = this.get("id");
     assert(
       id != null,
-      "Cannot save IndexFactorySupplyCeilingSet entity without an ID",
+      "Cannot save ARBEISupplyCeilingSet entity without an ID",
     );
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IndexFactorySupplyCeilingSet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEISupplyCeilingSet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set(
-        "IndexFactorySupplyCeilingSet",
+        "ARBEISupplyCeilingSet",
         id.toBytes().toHexString(),
         this,
       );
     }
   }
 
-  static loadInBlock(id: Bytes): IndexFactorySupplyCeilingSet | null {
-    return changetype<IndexFactorySupplyCeilingSet | null>(
-      store.get_in_block("IndexFactorySupplyCeilingSet", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEISupplyCeilingSet | null {
+    return changetype<ARBEISupplyCeilingSet | null>(
+      store.get_in_block("ARBEISupplyCeilingSet", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IndexFactorySupplyCeilingSet | null {
-    return changetype<IndexFactorySupplyCeilingSet | null>(
-      store.get("IndexFactorySupplyCeilingSet", id.toHexString()),
+  static load(id: Bytes): ARBEISupplyCeilingSet | null {
+    return changetype<ARBEISupplyCeilingSet | null>(
+      store.get("ARBEISupplyCeilingSet", id.toHexString()),
     );
   }
 
@@ -5510,7 +5510,7 @@ export class IndexFactorySupplyCeilingSet extends Entity {
   }
 }
 
-export class IndexFactoryToggledRestricted extends Entity {
+export class ARBEIToggledRestricted extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -5520,30 +5520,30 @@ export class IndexFactoryToggledRestricted extends Entity {
     let id = this.get("id");
     assert(
       id != null,
-      "Cannot save IndexFactoryToggledRestricted entity without an ID",
+      "Cannot save ARBEIToggledRestricted entity without an ID",
     );
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type IndexFactoryToggledRestricted must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type ARBEIToggledRestricted must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
       store.set(
-        "IndexFactoryToggledRestricted",
+        "ARBEIToggledRestricted",
         id.toBytes().toHexString(),
         this,
       );
     }
   }
 
-  static loadInBlock(id: Bytes): IndexFactoryToggledRestricted | null {
-    return changetype<IndexFactoryToggledRestricted | null>(
-      store.get_in_block("IndexFactoryToggledRestricted", id.toHexString()),
+  static loadInBlock(id: Bytes): ARBEIToggledRestricted | null {
+    return changetype<ARBEIToggledRestricted | null>(
+      store.get_in_block("ARBEIToggledRestricted", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): IndexFactoryToggledRestricted | null {
-    return changetype<IndexFactoryToggledRestricted | null>(
-      store.get("IndexFactoryToggledRestricted", id.toHexString()),
+  static load(id: Bytes): ARBEIToggledRestricted | null {
+    return changetype<ARBEIToggledRestricted | null>(
+      store.get("ARBEIToggledRestricted", id.toHexString()),
     );
   }
 

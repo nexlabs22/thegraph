@@ -24,14 +24,14 @@ import {
   FeeRateSet,
   FeeReceiverSet,
   Initialized,
-  Issuanced,
+  ARBEIIssuanced,
   MethodologistSet,
   MethodologySet,
   MintFeeToReceiver,
   MinterSet,
   OwnershipTransferred,
   Paused,
-  Redemption,
+  ARBEIRedemption,
   SupplyCeilingSet,
   ToggledRestricted,
   Unpaused,
@@ -116,7 +116,7 @@ export function handleInitialized(event: InitializedEvent): void {
 }
 
 export function handleIssuanced(event: IssuancedEvent): void {
-  let entity = new Issuanced(
+  let entity = new ARBEIIssuanced(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
   entity.user = event.params.user
@@ -217,7 +217,7 @@ export function handlePaused(event: PausedEvent): void {
 }
 
 export function handleRedemption(event: RedemptionEvent): void {
-  let entity = new Redemption(
+  let entity = new ARBEIRedemption(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
   entity.user = event.params.user
