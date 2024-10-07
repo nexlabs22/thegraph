@@ -66,6 +66,44 @@ export class Issuanced__Params {
   }
 }
 
+export class IssuanceCancelled extends ethereum.Event {
+  get params(): IssuanceCancelled__Params {
+    return new IssuanceCancelled__Params(this);
+  }
+}
+
+export class IssuanceCancelled__Params {
+  _event: IssuanceCancelled;
+
+  constructor(event: IssuanceCancelled) {
+    this._event = event;
+  }
+
+  get nonce(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get user(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get inputToken(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get inputAmount(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get outputAmount(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get time(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+}
+
 export class OwnershipTransferred extends ethereum.Event {
   get params(): OwnershipTransferred__Params {
     return new OwnershipTransferred__Params(this);
@@ -192,6 +230,44 @@ export class RequestRedemption__Params {
   _event: RequestRedemption;
 
   constructor(event: RequestRedemption) {
+    this._event = event;
+  }
+
+  get nonce(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get user(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get outputToken(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get inputAmount(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get outputAmount(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get time(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+}
+
+export class RedemptionCancelled extends ethereum.Event {
+  get params(): RedemptionCancelled__Params {
+    return new RedemptionCancelled__Params(this);
+  }
+}
+
+export class RedemptionCancelled__Params {
+  _event: RedemptionCancelled;
+
+  constructor(event: RedemptionCancelled) {
     this._event = event;
   }
 

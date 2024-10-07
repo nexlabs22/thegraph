@@ -132,6 +132,8 @@ dataSources:
         - MAG7Unpaused
         - MAG7RequestIssuance
         - MAG7RequestRedemption
+        - MAG7RequestCancelIssuance
+        - MAG7RequestCancelRedemption        
       abis:
         - name: IndexFactoryMAG7
           file: ./abis/IndexFactoryMAG7.json
@@ -146,6 +148,12 @@ dataSources:
           handler: handleRequestIssuance
         - event: RequestRedemption(indexed uint256,indexed address,address,uint256,uint256,uint256)
           handler: handleRequestRedemption
+        - event: RequestCancelIssuance(indexed uint256,indexed
+            address,address,uint256,uint256,uint256)
+          handler: handleRequestCancelIssuance
+        - event: RequestCancelRedemption(indexed uint256,indexed
+            address,address,uint256,uint256,uint256)
+          handler: handleRequestCancelRedemption          
         - event: Unpaused(address)
           handler: handleUnpaused
       file: ./src/index-factory-mag7.ts
@@ -163,8 +171,10 @@ dataSources:
       entities:
         - MAG7Initialized
         - MAG7Issuanced
+        - MAG7IssuanceCancelled
         - MAG7OwnershipTransferred
         - MAG7Redemption
+        - MAG7RedemptionCancelled
       abis:
         - name: IndexFactoryMAG7
           file: ./abis/IndexFactoryMAG7.json
@@ -173,10 +183,15 @@ dataSources:
           handler: handleInitialized
         - event: Issuanced(indexed uint256,indexed address,address,uint256,uint256,uint256)
           handler: handleIssuanced
+        - event: IssuanceCancelled(indexed uint256,indexed address,address,uint256,uint256,uint256)
+          handler: handleIssuanceCancelled
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
         - event: Redemption(indexed uint256,indexed address,address,uint256,uint256,uint256)
           handler: handleRedemption
+        - event: RedemptionCancelled(indexed uint256,indexed
+            address,address,uint256,uint256,uint256)
+          handler: handleRedemptionCancelled
       file: ./src/index-factory-mag7.ts
   - kind: ethereum
     name: IndexFactoryARBEI
