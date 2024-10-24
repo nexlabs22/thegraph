@@ -220,6 +220,44 @@ export class RequestIssuance__Params {
   }
 }
 
+export class RequestCancelIssuance extends ethereum.Event {
+  get params(): RequestCancelIssuance__Params {
+    return new RequestCancelIssuance__Params(this);
+  }
+}
+
+export class RequestCancelIssuance__Params {
+  _event: RequestCancelIssuance;
+
+  constructor(event: RequestCancelIssuance) {
+    this._event = event;
+  }
+
+  get nonce(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get user(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get inputToken(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get inputAmount(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get outputAmount(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get time(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+}
+
 export class RequestRedemption extends ethereum.Event {
   get params(): RequestRedemption__Params {
     return new RequestRedemption__Params(this);
@@ -268,6 +306,44 @@ export class RedemptionCancelled__Params {
   _event: RedemptionCancelled;
 
   constructor(event: RedemptionCancelled) {
+    this._event = event;
+  }
+
+  get nonce(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get user(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get outputToken(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get inputAmount(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get outputAmount(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get time(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+}
+
+export class RequestCancelRedemption extends ethereum.Event {
+  get params(): RequestCancelRedemption__Params {
+    return new RequestCancelRedemption__Params(this);
+  }
+}
+
+export class RequestCancelRedemption__Params {
+  _event: RequestCancelRedemption;
+
+  constructor(event: RequestCancelRedemption) {
     this._event = event;
   }
 
