@@ -368,9 +368,9 @@ export class Unpaused__Params {
   }
 }
 
-export class IndexFactory extends ethereum.SmartContract {
-  static bind(address: Address): IndexFactory {
-    return new IndexFactory("IndexFactory", address);
+export class IndexFactoryARBEI extends ethereum.SmartContract {
+  static bind(address: Address): IndexFactoryARBEI {
+    return new IndexFactoryARBEI("IndexFactoryARBEI", address);
   }
 
   concatenation(a: string, b: string): string {

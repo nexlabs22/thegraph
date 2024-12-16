@@ -19,6 +19,10 @@
     "IndexFactoryARBEI": {
       "address": "0xB5f11EAd535622Fa4EA1CA665e38ab2b4B1B2F9B",
       "startBlock": 6583560
+    },
+    "NexStaking": {
+      "address": "0x291856fe15735Aafa2ad446B0879Afba344Ba024",
+      "startBlock": 6893108
     }
   }
 }
