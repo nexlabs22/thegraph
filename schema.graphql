@@ -146,7 +146,7 @@ type ANFIUnpaused @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
-type CR5Initialized @entity(immutable: true) {
+type CRYPTO5Initialized @entity(immutable: true) {
   id: Bytes!
   version: Int! # uint8
   blockNumber: BigInt!
@@ -154,7 +154,7 @@ type CR5Initialized @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type CR5Issuanced @entity(immutable: true) {
+type CRYPTO5Issuanced @entity(immutable: true) {
   id: Bytes!
   messageId: Bytes! # bytes32
   nonce: BigInt! # uint256
@@ -176,7 +176,7 @@ type MessageSent @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type CR5OwnershipTransferred @entity(immutable: true) {
+type CRYPTO5OwnershipTransferred @entity(immutable: true) {
   id: Bytes!
   previousOwner: Bytes! # address
   newOwner: Bytes! # address
@@ -185,7 +185,7 @@ type CR5OwnershipTransferred @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type CR5Redemption @entity(immutable: true) {
+type CRYPTO5Redemption @entity(immutable: true) {
   id: Bytes!
   messageId: Bytes! # bytes32
   nonce: BigInt! # uint256
@@ -199,7 +199,7 @@ type CR5Redemption @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type CR5RequestIssuance @entity(immutable: true) {
+type CRYPTO5RequestIssuance @entity(immutable: true) {
   id: Bytes!
   messageId: Bytes! # bytes32
   nonce: BigInt! # uint256
@@ -213,7 +213,7 @@ type CR5RequestIssuance @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type CR5RequestRedemption @entity(immutable: true) {
+type CRYPTO5RequestRedemption @entity(immutable: true) {
   id: Bytes!
   messageId: Bytes! # bytes32
   nonce: BigInt! # uint256

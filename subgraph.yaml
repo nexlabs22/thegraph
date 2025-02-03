@@ -73,27 +73,27 @@ dataSources:
           handler: handleUnpaused
       file: ./src/index-factory-anfi.ts
   - kind: ethereum
-    name: IndexFactoryCR5
+    name: IndexFactoryCRYPTO5
     network: sepolia
     source:
       address: "0xCd16eDa751CcC77f780E06B7Af9aeD0E90a51586"
-      abi: IndexFactoryCR5
+      abi: IndexFactoryCRYPTO5
       startBlock: 5565101
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - CR5Initialized
-        - CR5Issuanced
+        - CRYPTO5Initialized
+        - CRYPTO5Issuanced
         - MessageSent
-        - CR5OwnershipTransferred
-        - CR5Redemption
-        - CR5RequestIssuance
-        - CR5RequestRedemption
+        - CRYPTO5OwnershipTransferred
+        - CRYPTO5Redemption
+        - CRYPTO5RequestIssuance
+        - CRYPTO5RequestRedemption
       abis:
-        - name: IndexFactoryCR5
-          file: ./abis/IndexFactoryCR5.json
+        - name: IndexFactoryCRYPTO5
+          file: ./abis/IndexFactoryCRYPTO5.json
       eventHandlers:
         - event: Initialized(uint8)
           handler: handleInitialized
@@ -113,7 +113,7 @@ dataSources:
         - event: RequestRedemption(indexed bytes32,indexed uint256,indexed
             address,address,uint256,uint256,uint256)
           handler: handleRequestRedemption
-      file: ./src/index-factory-cr5.ts
+      file: ./src/index-factory-CRYPTO5.ts
   - kind: ethereum
     name: IndexFactoryMAG7
     network: sepolia
@@ -132,6 +132,8 @@ dataSources:
         - MAG7Unpaused
         - MAG7RequestIssuance
         - MAG7RequestRedemption
+        - MAG7RequestCancelIssuance
+        - MAG7RequestCancelRedemption
       abis:
         - name: IndexFactoryMAG7
           file: ./abis/IndexFactoryMAG7.json
@@ -148,6 +150,12 @@ dataSources:
           handler: handleRequestRedemption
         - event: Unpaused(address)
           handler: handleUnpaused
+        - event: RequestCancelIssuance(indexed uint256,indexed
+            address,address,uint256,uint256,uint256)
+          handler: handleRequestCancelIssuance
+        - event: RequestCancelRedemption(indexed uint256,indexed
+            address,address,uint256,uint256,uint256)
+          handler: handleRequestCancelRedemption
       file: ./src/index-factory-mag7.ts
   - kind: ethereum
     name: IndexFactoryProcessorMAG7
@@ -165,6 +173,8 @@ dataSources:
         - MAG7Issuanced
         - MAG7OwnershipTransferred
         - MAG7Redemption
+        - MAG7IssuanceCancelled
+        - MAG7RedemptionCancelled
       abis:
         - name: IndexFactoryMAG7
           file: ./abis/IndexFactoryMAG7.json
@@ -177,6 +187,11 @@ dataSources:
           handler: handleOwnershipTransferred
         - event: Redemption(indexed uint256,indexed address,address,uint256,uint256,uint256)
           handler: handleRedemption
+        - event: IssuanceCancelled(indexed uint256,indexed address,address,uint256,uint256,uint256)
+          handler: handleIssuanceCancelled
+        - event: RedemptionCancelled(indexed uint256,indexed
+            address,address,uint256,uint256,uint256)
+          handler: handleRedemptionCancelled
       file: ./src/index-factory-mag7.ts
   - kind: ethereum
     name: IndexFactoryARBEI

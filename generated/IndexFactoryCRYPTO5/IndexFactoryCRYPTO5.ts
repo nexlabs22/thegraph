@@ -236,7 +236,7 @@ export class RequestRedemption__Params {
   }
 }
 
-export class IndexFactoryCR5__issuanceTokenOldAndNewValuesResult {
+export class IndexFactoryCRYPTO5__issuanceTokenOldAndNewValuesResult {
   value0: BigInt;
   value1: BigInt;
 
@@ -261,9 +261,9 @@ export class IndexFactoryCR5__issuanceTokenOldAndNewValuesResult {
   }
 }
 
-export class IndexFactoryCR5 extends ethereum.SmartContract {
-  static bind(address: Address): IndexFactoryCR5 {
-    return new IndexFactoryCR5("IndexFactoryCR5", address);
+export class IndexFactoryCRYPTO5 extends ethereum.SmartContract {
+  static bind(address: Address): IndexFactoryCRYPTO5 {
+    return new IndexFactoryCRYPTO5("IndexFactoryCRYPTO5", address);
   }
 
   convertEthToUsd(_ethAmount: BigInt): BigInt {
@@ -739,7 +739,7 @@ export class IndexFactoryCR5 extends ethereum.SmartContract {
   issuanceTokenOldAndNewValues(
     param0: BigInt,
     param1: Address,
-  ): IndexFactoryCR5__issuanceTokenOldAndNewValuesResult {
+  ): IndexFactoryCRYPTO5__issuanceTokenOldAndNewValuesResult {
     let result = super.call(
       "issuanceTokenOldAndNewValues",
       "issuanceTokenOldAndNewValues(uint256,address):(uint256,uint256)",
@@ -749,7 +749,7 @@ export class IndexFactoryCR5 extends ethereum.SmartContract {
       ],
     );
 
-    return new IndexFactoryCR5__issuanceTokenOldAndNewValuesResult(
+    return new IndexFactoryCRYPTO5__issuanceTokenOldAndNewValuesResult(
       result[0].toBigInt(),
       result[1].toBigInt(),
     );
@@ -758,7 +758,7 @@ export class IndexFactoryCR5 extends ethereum.SmartContract {
   try_issuanceTokenOldAndNewValues(
     param0: BigInt,
     param1: Address,
-  ): ethereum.CallResult<IndexFactoryCR5__issuanceTokenOldAndNewValuesResult> {
+  ): ethereum.CallResult<IndexFactoryCRYPTO5__issuanceTokenOldAndNewValuesResult> {
     let result = super.tryCall(
       "issuanceTokenOldAndNewValues",
       "issuanceTokenOldAndNewValues(uint256,address):(uint256,uint256)",
@@ -772,7 +772,7 @@ export class IndexFactoryCR5 extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new IndexFactoryCR5__issuanceTokenOldAndNewValuesResult(
+      new IndexFactoryCRYPTO5__issuanceTokenOldAndNewValuesResult(
         value[0].toBigInt(),
         value[1].toBigInt(),
       ),

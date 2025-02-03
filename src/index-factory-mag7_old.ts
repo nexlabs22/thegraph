@@ -1,19 +1,14 @@
 import {
   Initialized as InitializedEvent,
   Issuanced as IssuancedEvent,
-  IssuanceCancelled as IssuanceCancelledEvent,
   OwnershipTransferred as OwnershipTransferredEvent,
   Paused as PausedEvent,
   Redemption as RedemptionEvent,
   RequestIssuance as RequestIssuanceEvent,
   RequestRedemption as RequestRedemptionEvent,
-  RedemptionCancelled as RedemptionCancelledEvent,
-  RequestCancelIssuance as RequestCancelIssuanceEvent,
-  RequestCancelRedemption as RequestCancelRedemptionEvent,
   Unpaused as UnpausedEvent,
 } from "../generated/IndexFactoryMAG7/IndexFactoryMAG7"
 import {
-  MAG7IssuanceCancelled,
   MAG7Initialized,
   MAG7Issuanced,
   MAG7OwnershipTransferred,
@@ -22,9 +17,6 @@ import {
   MAG7RequestIssuance,
   MAG7RequestRedemption,
   MAG7Unpaused,
-  MAG7RedemptionCancelled,
-  MAG7RequestCancelRedemption,
-  MAG7RequestCancelIssuance,
 } from "../generated/schema"
 
 export function handleInitialized(event: InitializedEvent): void {
@@ -47,64 +39,6 @@ export function handleIssuanced(event: IssuancedEvent): void {
   entity.nonce = event.params.nonce
   entity.user = event.params.user
   entity.inputToken = event.params.inputToken
-  entity.inputAmount = event.params.inputAmount
-  entity.outputAmount = event.params.outputAmount
-  entity.time = event.params.time
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleIssuanceCancelled(event: IssuanceCancelledEvent): void {
-  let entity = new MAG7IssuanceCancelled(
-    event.transaction.hash.concatI32(event.logIndex.toI32()),
-  )
-  entity.nonce = event.params.nonce
-  entity.user = event.params.user
-  entity.inputToken = event.params.inputToken
-  entity.inputAmount = event.params.inputAmount
-  entity.outputAmount = event.params.outputAmount
-  entity.time = event.params.time
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleRequestCancelIssuance(
-  event: RequestCancelIssuanceEvent,
-): void {
-  let entity = new MAG7RequestCancelIssuance(
-    event.transaction.hash.concatI32(event.logIndex.toI32()),
-  )
-  entity.nonce = event.params.nonce
-  entity.user = event.params.user
-  entity.inputToken = event.params.inputToken
-  entity.inputAmount = event.params.inputAmount
-  entity.outputAmount = event.params.outputAmount
-  entity.time = event.params.time
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleRequestCancelRedemption(
-  event: RequestCancelRedemptionEvent,
-): void {
-  let entity = new MAG7RequestCancelRedemption(
-    event.transaction.hash.concatI32(event.logIndex.toI32()),
-  )
-  entity.nonce = event.params.nonce
-  entity.user = event.params.user
-  entity.outputToken = event.params.outputToken
   entity.inputAmount = event.params.inputAmount
   entity.outputAmount = event.params.outputAmount
   entity.time = event.params.time
@@ -183,26 +117,6 @@ export function handleRequestIssuance(event: RequestIssuanceEvent): void {
 
 export function handleRequestRedemption(event: RequestRedemptionEvent): void {
   let entity = new MAG7RequestRedemption(
-    event.transaction.hash.concatI32(event.logIndex.toI32()),
-  )
-  entity.nonce = event.params.nonce
-  entity.user = event.params.user
-  entity.outputToken = event.params.outputToken
-  entity.inputAmount = event.params.inputAmount
-  entity.outputAmount = event.params.outputAmount
-  entity.time = event.params.time
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleRedemptionCancelled(
-  event: RedemptionCancelledEvent,
-): void {
-  let entity = new MAG7RedemptionCancelled(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
   entity.nonce = event.params.nonce

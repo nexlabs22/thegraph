@@ -6,19 +6,19 @@ import {
   Redemption as RedemptionEvent,
   RequestIssuance as RequestIssuanceEvent,
   RequestRedemption as RequestRedemptionEvent,
-} from "../generated/IndexFactoryCR5/IndexFactoryCR5"
+} from "../generated/IndexFactoryCRYPTO5/IndexFactoryCRYPTO5"
 import {
-  CR5Initialized,
-  CR5Issuanced,
+  CRYPTO5Initialized,
+  CRYPTO5Issuanced,
   MessageSent,
-  CR5OwnershipTransferred,
-  CR5Redemption,
-  CR5RequestIssuance,
-  CR5RequestRedemption,
+  CRYPTO5OwnershipTransferred,
+  CRYPTO5Redemption,
+  CRYPTO5RequestIssuance,
+  CRYPTO5RequestRedemption,
 } from "../generated/schema"
 
 export function handleInitialized(event: InitializedEvent): void {
-  let entity = new CR5Initialized(
+  let entity = new CRYPTO5Initialized(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
   entity.version = event.params.version
@@ -31,7 +31,7 @@ export function handleInitialized(event: InitializedEvent): void {
 }
 
 export function handleIssuanced(event: IssuancedEvent): void {
-  let entity = new CR5Issuanced(
+  let entity = new CRYPTO5Issuanced(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
   entity.messageId = event.params.messageId
@@ -65,7 +65,7 @@ export function handleMessageSent(event: MessageSentEvent): void {
 export function handleOwnershipTransferred(
   event: OwnershipTransferredEvent,
 ): void {
-  let entity = new CR5OwnershipTransferred(
+  let entity = new CRYPTO5OwnershipTransferred(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
   entity.previousOwner = event.params.previousOwner
@@ -79,7 +79,7 @@ export function handleOwnershipTransferred(
 }
 
 export function handleRedemption(event: RedemptionEvent): void {
-  let entity = new CR5Redemption(
+  let entity = new CRYPTO5Redemption(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
   entity.messageId = event.params.messageId
@@ -98,7 +98,7 @@ export function handleRedemption(event: RedemptionEvent): void {
 }
 
 export function handleRequestIssuance(event: RequestIssuanceEvent): void {
-  let entity = new CR5RequestIssuance(
+  let entity = new CRYPTO5RequestIssuance(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
   entity.messageId = event.params.messageId
@@ -117,7 +117,7 @@ export function handleRequestIssuance(event: RequestIssuanceEvent): void {
 }
 
 export function handleRequestRedemption(event: RequestRedemptionEvent): void {
-  let entity = new CR5RequestRedemption(
+  let entity = new CRYPTO5RequestRedemption(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
   entity.messageId = event.params.messageId
