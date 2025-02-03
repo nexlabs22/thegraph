@@ -303,6 +303,58 @@ type MAG7RequestRedemption @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
+type MAG7IssuanceCancelled @entity(immutable: true) {
+  id: Bytes!
+  nonce: BigInt! # uint256
+  user: Bytes! # address
+  inputToken: Bytes! # address
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  time: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MAG7RedemptionCancelled @entity(immutable: true) {
+  id: Bytes!
+  nonce: BigInt! # uint256
+  user: Bytes! # address
+  outputToken: Bytes! # address
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  time: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MAG7RequestCancelIssuance @entity(immutable: true) {
+  id: Bytes!
+  nonce: BigInt! # uint256
+  user: Bytes! # address
+  inputToken: Bytes! # address
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  time: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MAG7RequestCancelRedemption @entity(immutable: true) {
+  id: Bytes!
+  nonce: BigInt! # uint256
+  user: Bytes! # address
+  outputToken: Bytes! # address
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  time: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
 type MAG7Unpaused @entity(immutable: true) {
   id: Bytes!
   account: Bytes! # address
