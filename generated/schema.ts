@@ -54,6 +54,19 @@ export class ChainlinkCancelled extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get IndexFactory_id(): Bytes {
     let value = this.get("IndexFactory_id");
     if (!value || value.kind == ValueKind.NULL) {
@@ -148,6 +161,19 @@ export class ChainlinkFulfilled extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get IndexFactory_id(): Bytes {
@@ -246,6 +272,19 @@ export class ChainlinkRequested extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get IndexFactory_id(): Bytes {
     let value = this.get("IndexFactory_id");
     if (!value || value.kind == ValueKind.NULL) {
@@ -340,6 +379,19 @@ export class FeeRateSet extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get feeRatePerDayScaled(): BigInt {
@@ -438,6 +490,19 @@ export class FeeReceiverSet extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get feeReceiver(): Bytes {
     let value = this.get("feeReceiver");
     if (!value || value.kind == ValueKind.NULL) {
@@ -534,6 +599,19 @@ export class ANFIInitialized extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get version(): i32 {
     let value = this.get("version");
     if (!value || value.kind == ValueKind.NULL) {
@@ -628,6 +706,19 @@ export class ANFIIssuanced extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get user(): Bytes {
@@ -778,6 +869,19 @@ export class MethodologistSet extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get methodologist(): Bytes {
     let value = this.get("methodologist");
     if (!value || value.kind == ValueKind.NULL) {
@@ -874,6 +978,19 @@ export class MethodologySet extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get methodology(): string {
     let value = this.get("methodology");
     if (!value || value.kind == ValueKind.NULL) {
@@ -968,6 +1085,19 @@ export class MintFeeToReceiver extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get feeReceiver(): Bytes {
@@ -1105,6 +1235,19 @@ export class MinterSet extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get minter(): Bytes {
     let value = this.get("minter");
     if (!value || value.kind == ValueKind.NULL) {
@@ -1202,6 +1345,19 @@ export class ANFIOwnershipTransferred extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get previousOwner(): Bytes {
@@ -1313,6 +1469,19 @@ export class ANFIPaused extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get account(): Bytes {
     let value = this.get("account");
     if (!value || value.kind == ValueKind.NULL) {
@@ -1407,6 +1576,19 @@ export class ANFIRedemption extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get user(): Bytes {
@@ -1557,6 +1739,19 @@ export class SupplyCeilingSet extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get supplyCeiling(): BigInt {
     let value = this.get("supplyCeiling");
     if (!value || value.kind == ValueKind.NULL) {
@@ -1651,6 +1846,19 @@ export class ToggledRestricted extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get account(): Bytes {
@@ -1762,6 +1970,19 @@ export class ANFIUnpaused extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get account(): Bytes {
     let value = this.get("account");
     if (!value || value.kind == ValueKind.NULL) {
@@ -1858,6 +2079,19 @@ export class CRYPTO5Initialized extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get version(): i32 {
     let value = this.get("version");
     if (!value || value.kind == ValueKind.NULL) {
@@ -1952,6 +2186,19 @@ export class CRYPTO5Issuanced extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get messageId(): Bytes {
@@ -2128,6 +2375,19 @@ export class MessageSent extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get messageId(): Bytes {
     let value = this.get("messageId");
     if (!value || value.kind == ValueKind.NULL) {
@@ -2229,6 +2489,19 @@ export class CRYPTO5OwnershipTransferred extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get previousOwner(): Bytes {
@@ -2338,6 +2611,19 @@ export class CRYPTO5Redemption extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get messageId(): Bytes {
@@ -2517,6 +2803,19 @@ export class CRYPTO5RequestIssuance extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get messageId(): Bytes {
     let value = this.get("messageId");
     if (!value || value.kind == ValueKind.NULL) {
@@ -2694,6 +2993,19 @@ export class CRYPTO5RequestRedemption extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get messageId(): Bytes {
     let value = this.get("messageId");
     if (!value || value.kind == ValueKind.NULL) {
@@ -2868,6 +3180,19 @@ export class MAG7Initialized extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get version(): BigInt {
     let value = this.get("version");
     if (!value || value.kind == ValueKind.NULL) {
@@ -2962,6 +3287,19 @@ export class MAG7Issuanced extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get nonce(): BigInt {
@@ -3128,6 +3466,19 @@ export class MAG7OwnershipTransferred extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get previousOwner(): Bytes {
     let value = this.get("previousOwner");
     if (!value || value.kind == ValueKind.NULL) {
@@ -3237,6 +3588,19 @@ export class MAG7Paused extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get account(): Bytes {
     let value = this.get("account");
     if (!value || value.kind == ValueKind.NULL) {
@@ -3331,6 +3695,19 @@ export class MAG7Redemption extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get nonce(): BigInt {
@@ -3492,6 +3869,19 @@ export class MAG7RequestIssuance extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get nonce(): BigInt {
@@ -3658,6 +4048,19 @@ export class MAG7RequestRedemption extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get nonce(): BigInt {
     let value = this.get("nonce");
     if (!value || value.kind == ValueKind.NULL) {
@@ -3820,6 +4223,19 @@ export class MAG7IssuanceCancelled extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get nonce(): BigInt {
@@ -3986,6 +4402,19 @@ export class MAG7RedemptionCancelled extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get nonce(): BigInt {
     let value = this.get("nonce");
     if (!value || value.kind == ValueKind.NULL) {
@@ -4148,6 +4577,19 @@ export class MAG7RequestCancelIssuance extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get nonce(): BigInt {
@@ -4318,6 +4760,19 @@ export class MAG7RequestCancelRedemption extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
+  }
+
   get nonce(): BigInt {
     let value = this.get("nonce");
     if (!value || value.kind == ValueKind.NULL) {
@@ -4477,6 +4932,19 @@ export class MAG7Unpaused extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get network(): string {
+    let value = this.get("network");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toString();
+    }
+  }
+
+  set network(value: string) {
+    this.set("network", Value.fromString(value));
   }
 
   get account(): Bytes {

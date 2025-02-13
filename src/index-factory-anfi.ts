@@ -1,3 +1,4 @@
+import { dataSource } from "@graphprotocol/graph-ts"
 import {
   ChainlinkCancelled as ChainlinkCancelledEvent,
   ChainlinkFulfilled as ChainlinkFulfilledEvent,
@@ -41,6 +42,7 @@ export function handleChainlinkCancelled(event: ChainlinkCancelledEvent): void {
   let entity = new ChainlinkCancelled(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.IndexFactory_id = event.params.id
 
   entity.blockNumber = event.block.number
@@ -54,6 +56,7 @@ export function handleChainlinkFulfilled(event: ChainlinkFulfilledEvent): void {
   let entity = new ChainlinkFulfilled(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.IndexFactory_id = event.params.id
 
   entity.blockNumber = event.block.number
@@ -67,6 +70,7 @@ export function handleChainlinkRequested(event: ChainlinkRequestedEvent): void {
   let entity = new ChainlinkRequested(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.IndexFactory_id = event.params.id
 
   entity.blockNumber = event.block.number
@@ -80,6 +84,7 @@ export function handleFeeRateSet(event: FeeRateSetEvent): void {
   let entity = new FeeRateSet(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.feeRatePerDayScaled = event.params.feeRatePerDayScaled
 
   entity.blockNumber = event.block.number
@@ -93,6 +98,7 @@ export function handleFeeReceiverSet(event: FeeReceiverSetEvent): void {
   let entity = new FeeReceiverSet(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.feeReceiver = event.params.feeReceiver
 
   entity.blockNumber = event.block.number
@@ -106,6 +112,7 @@ export function handleInitialized(event: InitializedEvent): void {
   let entity = new ANFIInitialized(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.version = event.params.version
 
   entity.blockNumber = event.block.number
@@ -119,6 +126,7 @@ export function handleIssuanced(event: IssuancedEvent): void {
   let entity = new ANFIIssuanced(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.user = event.params.user
   entity.inputToken = event.params.inputToken
   entity.inputAmount = event.params.inputAmount
@@ -136,6 +144,7 @@ export function handleMethodologistSet(event: MethodologistSetEvent): void {
   let entity = new MethodologistSet(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.methodologist = event.params.methodologist
 
   entity.blockNumber = event.block.number
@@ -149,6 +158,7 @@ export function handleMethodologySet(event: MethodologySetEvent): void {
   let entity = new MethodologySet(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.methodology = event.params.methodology
 
   entity.blockNumber = event.block.number
@@ -162,6 +172,7 @@ export function handleMintFeeToReceiver(event: MintFeeToReceiverEvent): void {
   let entity = new MintFeeToReceiver(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.feeReceiver = event.params.feeReceiver
   entity.timestamp = event.params.timestamp
   entity.totalSupply = event.params.totalSupply
@@ -178,6 +189,7 @@ export function handleMinterSet(event: MinterSetEvent): void {
   let entity = new MinterSet(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.minter = event.params.minter
 
   entity.blockNumber = event.block.number
@@ -193,6 +205,7 @@ export function handleOwnershipTransferred(
   let entity = new ANFIOwnershipTransferred(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.previousOwner = event.params.previousOwner
   entity.newOwner = event.params.newOwner
 
@@ -207,6 +220,7 @@ export function handlePaused(event: PausedEvent): void {
   let entity = new ANFIPaused(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.account = event.params.account
 
   entity.blockNumber = event.block.number
@@ -220,6 +234,7 @@ export function handleRedemption(event: RedemptionEvent): void {
   let entity = new ANFIRedemption(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.user = event.params.user
   entity.outputToken = event.params.outputToken
   entity.inputAmount = event.params.inputAmount
@@ -237,6 +252,7 @@ export function handleSupplyCeilingSet(event: SupplyCeilingSetEvent): void {
   let entity = new SupplyCeilingSet(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.supplyCeiling = event.params.supplyCeiling
 
   entity.blockNumber = event.block.number
@@ -250,6 +266,7 @@ export function handleToggledRestricted(event: ToggledRestrictedEvent): void {
   let entity = new ToggledRestricted(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.account = event.params.account
   entity.isRestricted = event.params.isRestricted
 
@@ -264,6 +281,7 @@ export function handleUnpaused(event: UnpausedEvent): void {
   let entity = new ANFIUnpaused(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   )
+  entity.network = dataSource.network()
   entity.account = event.params.account
 
   entity.blockNumber = event.block.number

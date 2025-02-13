@@ -1,3 +1,4 @@
+import { dataSource } from "@graphprotocol/graph-ts"
 import {
   Initialized as InitializedEvent,
   Issuanced as IssuancedEvent,
@@ -21,6 +22,7 @@ export function handleInitialized(event: InitializedEvent): void {
   let entity = new CRYPTO5Initialized(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.version = event.params.version
 
   entity.blockNumber = event.block.number
@@ -34,6 +36,7 @@ export function handleIssuanced(event: IssuancedEvent): void {
   let entity = new CRYPTO5Issuanced(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.messageId = event.params.messageId
   entity.nonce = event.params.nonce
   entity.user = event.params.user
@@ -53,6 +56,7 @@ export function handleMessageSent(event: MessageSentEvent): void {
   let entity = new MessageSent(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.messageId = event.params.messageId
 
   entity.blockNumber = event.block.number
@@ -68,6 +72,7 @@ export function handleOwnershipTransferred(
   let entity = new CRYPTO5OwnershipTransferred(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.previousOwner = event.params.previousOwner
   entity.newOwner = event.params.newOwner
 
@@ -82,6 +87,7 @@ export function handleRedemption(event: RedemptionEvent): void {
   let entity = new CRYPTO5Redemption(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.messageId = event.params.messageId
   entity.nonce = event.params.nonce
   entity.user = event.params.user
@@ -101,6 +107,7 @@ export function handleRequestIssuance(event: RequestIssuanceEvent): void {
   let entity = new CRYPTO5RequestIssuance(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.messageId = event.params.messageId
   entity.nonce = event.params.nonce
   entity.user = event.params.user
@@ -120,6 +127,7 @@ export function handleRequestRedemption(event: RequestRedemptionEvent): void {
   let entity = new CRYPTO5RequestRedemption(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.messageId = event.params.messageId
   entity.nonce = event.params.nonce
   entity.user = event.params.user

@@ -1,5 +1,6 @@
 type ChainlinkCancelled @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   IndexFactory_id: Bytes! # bytes32
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -8,6 +9,7 @@ type ChainlinkCancelled @entity(immutable: true) {
 
 type ChainlinkFulfilled @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   IndexFactory_id: Bytes! # bytes32
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -16,6 +18,7 @@ type ChainlinkFulfilled @entity(immutable: true) {
 
 type ChainlinkRequested @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   IndexFactory_id: Bytes! # bytes32
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -24,6 +27,7 @@ type ChainlinkRequested @entity(immutable: true) {
 
 type FeeRateSet @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   feeRatePerDayScaled: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -32,6 +36,7 @@ type FeeRateSet @entity(immutable: true) {
 
 type FeeReceiverSet @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   feeReceiver: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -40,6 +45,7 @@ type FeeReceiverSet @entity(immutable: true) {
 
 type ANFIInitialized @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   version: Int! # uint8
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -48,6 +54,7 @@ type ANFIInitialized @entity(immutable: true) {
 
 type ANFIIssuanced @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   user: Bytes! # address
   inputToken: Bytes! # address
   inputAmount: BigInt! # uint256
@@ -60,6 +67,7 @@ type ANFIIssuanced @entity(immutable: true) {
 
 type MethodologistSet @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   methodologist: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -68,6 +76,7 @@ type MethodologistSet @entity(immutable: true) {
 
 type MethodologySet @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   methodology: String! # string
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -76,6 +85,7 @@ type MethodologySet @entity(immutable: true) {
 
 type MintFeeToReceiver @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   feeReceiver: Bytes! # address
   timestamp: BigInt! # uint256
   totalSupply: BigInt! # uint256
@@ -87,6 +97,7 @@ type MintFeeToReceiver @entity(immutable: true) {
 
 type MinterSet @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   minter: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -95,6 +106,7 @@ type MinterSet @entity(immutable: true) {
 
 type ANFIOwnershipTransferred @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   previousOwner: Bytes! # address
   newOwner: Bytes! # address
   blockNumber: BigInt!
@@ -104,6 +116,7 @@ type ANFIOwnershipTransferred @entity(immutable: true) {
 
 type ANFIPaused @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   account: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -112,6 +125,7 @@ type ANFIPaused @entity(immutable: true) {
 
 type ANFIRedemption @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   user: Bytes! # address
   outputToken: Bytes! # address
   inputAmount: BigInt! # uint256
@@ -124,6 +138,7 @@ type ANFIRedemption @entity(immutable: true) {
 
 type SupplyCeilingSet @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   supplyCeiling: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -132,6 +147,7 @@ type SupplyCeilingSet @entity(immutable: true) {
 
 type ToggledRestricted @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   account: Bytes! # address
   isRestricted: Boolean! # bool
   blockNumber: BigInt!
@@ -141,6 +157,7 @@ type ToggledRestricted @entity(immutable: true) {
 
 type ANFIUnpaused @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   account: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -148,6 +165,7 @@ type ANFIUnpaused @entity(immutable: true) {
 }
 type CRYPTO5Initialized @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   version: Int! # uint8
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -156,6 +174,7 @@ type CRYPTO5Initialized @entity(immutable: true) {
 
 type CRYPTO5Issuanced @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   messageId: Bytes! # bytes32
   nonce: BigInt! # uint256
   user: Bytes! # address
@@ -170,6 +189,7 @@ type CRYPTO5Issuanced @entity(immutable: true) {
 
 type MessageSent @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   messageId: Bytes! # bytes32
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -178,6 +198,7 @@ type MessageSent @entity(immutable: true) {
 
 type CRYPTO5OwnershipTransferred @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   previousOwner: Bytes! # address
   newOwner: Bytes! # address
   blockNumber: BigInt!
@@ -187,6 +208,7 @@ type CRYPTO5OwnershipTransferred @entity(immutable: true) {
 
 type CRYPTO5Redemption @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   messageId: Bytes! # bytes32
   nonce: BigInt! # uint256
   user: Bytes! # address
@@ -201,6 +223,7 @@ type CRYPTO5Redemption @entity(immutable: true) {
 
 type CRYPTO5RequestIssuance @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   messageId: Bytes! # bytes32
   nonce: BigInt! # uint256
   user: Bytes! # address
@@ -215,6 +238,7 @@ type CRYPTO5RequestIssuance @entity(immutable: true) {
 
 type CRYPTO5RequestRedemption @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   messageId: Bytes! # bytes32
   nonce: BigInt! # uint256
   user: Bytes! # address
@@ -228,6 +252,7 @@ type CRYPTO5RequestRedemption @entity(immutable: true) {
 }
 type MAG7Initialized @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   version: BigInt! # uint64
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -236,6 +261,7 @@ type MAG7Initialized @entity(immutable: true) {
 
 type MAG7Issuanced @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   nonce: BigInt! # uint256
   user: Bytes! # address
   inputToken: Bytes! # address
@@ -249,6 +275,7 @@ type MAG7Issuanced @entity(immutable: true) {
 
 type MAG7OwnershipTransferred @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   previousOwner: Bytes! # address
   newOwner: Bytes! # address
   blockNumber: BigInt!
@@ -258,6 +285,7 @@ type MAG7OwnershipTransferred @entity(immutable: true) {
 
 type MAG7Paused @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   account: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -266,6 +294,7 @@ type MAG7Paused @entity(immutable: true) {
 
 type MAG7Redemption @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   nonce: BigInt! # uint256
   user: Bytes! # address
   outputToken: Bytes! # address
@@ -279,6 +308,7 @@ type MAG7Redemption @entity(immutable: true) {
 
 type MAG7RequestIssuance @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   nonce: BigInt! # uint256
   user: Bytes! # address
   inputToken: Bytes! # address
@@ -292,6 +322,7 @@ type MAG7RequestIssuance @entity(immutable: true) {
 
 type MAG7RequestRedemption @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   nonce: BigInt! # uint256
   user: Bytes! # address
   outputToken: Bytes! # address
@@ -305,6 +336,7 @@ type MAG7RequestRedemption @entity(immutable: true) {
 
 type MAG7IssuanceCancelled @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   nonce: BigInt! # uint256
   user: Bytes! # address
   inputToken: Bytes! # address
@@ -318,6 +350,7 @@ type MAG7IssuanceCancelled @entity(immutable: true) {
 
 type MAG7RedemptionCancelled @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   nonce: BigInt! # uint256
   user: Bytes! # address
   outputToken: Bytes! # address
@@ -331,6 +364,7 @@ type MAG7RedemptionCancelled @entity(immutable: true) {
 
 type MAG7RequestCancelIssuance @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   nonce: BigInt! # uint256
   user: Bytes! # address
   inputToken: Bytes! # address
@@ -344,6 +378,7 @@ type MAG7RequestCancelIssuance @entity(immutable: true) {
 
 type MAG7RequestCancelRedemption @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   nonce: BigInt! # uint256
   user: Bytes! # address
   outputToken: Bytes! # address
@@ -357,6 +392,7 @@ type MAG7RequestCancelRedemption @entity(immutable: true) {
 
 type MAG7Unpaused @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   account: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
