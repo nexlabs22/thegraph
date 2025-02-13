@@ -16,9 +16,12 @@
       "address": "0x8250b30Ae818Ab30d5A03E893Cdc850bdA08E638",
       "startBlock": 6513718
     },
+    "IndexTokenARBEI": {
+      "address": "0xE22A1e2bf573B84E6E676C49D2b5742aFB9Ba935",
+      "startBlock": 7595918
+    },
     "IndexFactoryARBEI": {
-      "address": "0xB5f11EAd535622Fa4EA1CA665e38ab2b4B1B2F9B",
-      "startBlock": 6583560
+      "address": "0x65B1DDD708dc7e169c831ae1F4Fd4Dc94bF0a417"
     }
   }
 }

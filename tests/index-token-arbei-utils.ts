@@ -1,59 +1,42 @@
 import { newMockEvent } from "matchstick-as"
-import { ethereum, Bytes, BigInt, Address } from "@graphprotocol/graph-ts"
+import { ethereum, Address, BigInt } from "@graphprotocol/graph-ts"
 import {
-  ChainlinkCancelled,
-  ChainlinkFulfilled,
-  ChainlinkRequested,
+  Approval,
   FeeRateSet,
   FeeReceiverSet,
   Initialized,
-  Issuanced,
   MethodologistSet,
   MethodologySet,
   MintFeeToReceiver,
   MinterSet,
   OwnershipTransferred,
   Paused,
-  Redemption,
   SupplyCeilingSet,
   ToggledRestricted,
+  Transfer,
   Unpaused
-} from "../generated/IndexFactoryARBEI/IndexFactoryARBEI"
+} from "../generated/IndexTokenARBEI/IndexTokenARBEI"
 
-export function createChainlinkCancelledEvent(id: Bytes): ChainlinkCancelled {
-  let chainlinkCancelledEvent = changetype<ChainlinkCancelled>(newMockEvent())
+export function createApprovalEvent(
+  owner: Address,
+  spender: Address,
+  value: BigInt
+): Approval {
+  let approvalEvent = changetype<Approval>(newMockEvent())
 
-  chainlinkCancelledEvent.parameters = new Array()
+  approvalEvent.parameters = new Array()
 
-  chainlinkCancelledEvent.parameters.push(
-    new ethereum.EventParam("id", ethereum.Value.fromFixedBytes(id))
+  approvalEvent.parameters.push(
+    new ethereum.EventParam("owner", ethereum.Value.fromAddress(owner))
+  )
+  approvalEvent.parameters.push(
+    new ethereum.EventParam("spender", ethereum.Value.fromAddress(spender))
+  )
+  approvalEvent.parameters.push(
+    new ethereum.EventParam("value", ethereum.Value.fromUnsignedBigInt(value))
   )
 
-  return chainlinkCancelledEvent
-}
-
-export function createChainlinkFulfilledEvent(id: Bytes): ChainlinkFulfilled {
-  let chainlinkFulfilledEvent = changetype<ChainlinkFulfilled>(newMockEvent())
-
-  chainlinkFulfilledEvent.parameters = new Array()
-
-  chainlinkFulfilledEvent.parameters.push(
-    new ethereum.EventParam("id", ethereum.Value.fromFixedBytes(id))
-  )
-
-  return chainlinkFulfilledEvent
-}
-
-export function createChainlinkRequestedEvent(id: Bytes): ChainlinkRequested {
-  let chainlinkRequestedEvent = changetype<ChainlinkRequested>(newMockEvent())
-
-  chainlinkRequestedEvent.parameters = new Array()
-
-  chainlinkRequestedEvent.parameters.push(
-    new ethereum.EventParam("id", ethereum.Value.fromFixedBytes(id))
-  )
-
-  return chainlinkRequestedEvent
+  return approvalEvent
 }
 
 export function createFeeRateSetEvent(feeRatePerDayScaled: BigInt): FeeRateSet {
@@ -101,45 +84,6 @@ export function createInitializedEvent(version: i32): Initialized {
   )
 
   return initializedEvent
-}
-
-export function createIssuancedEvent(
-  user: Address,
-  inputToken: Address,
-  inputAmount: BigInt,
-  outputAmount: BigInt,
-  time: BigInt
-): Issuanced {
-  let issuancedEvent = changetype<Issuanced>(newMockEvent())
-
-  issuancedEvent.parameters = new Array()
-
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam("user", ethereum.Value.fromAddress(user))
-  )
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam(
-      "inputToken",
-      ethereum.Value.fromAddress(inputToken)
-    )
-  )
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam(
-      "inputAmount",
-      ethereum.Value.fromUnsignedBigInt(inputAmount)
-    )
-  )
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam(
-      "outputAmount",
-      ethereum.Value.fromUnsignedBigInt(outputAmount)
-    )
-  )
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam("time", ethereum.Value.fromUnsignedBigInt(time))
-  )
-
-  return issuancedEvent
 }
 
 export function createMethodologistSetEvent(
@@ -256,45 +200,6 @@ export function createPausedEvent(account: Address): Paused {
   return pausedEvent
 }
 
-export function createRedemptionEvent(
-  user: Address,
-  outputToken: Address,
-  inputAmount: BigInt,
-  outputAmount: BigInt,
-  time: BigInt
-): Redemption {
-  let redemptionEvent = changetype<Redemption>(newMockEvent())
-
-  redemptionEvent.parameters = new Array()
-
-  redemptionEvent.parameters.push(
-    new ethereum.EventParam("user", ethereum.Value.fromAddress(user))
-  )
-  redemptionEvent.parameters.push(
-    new ethereum.EventParam(
-      "outputToken",
-      ethereum.Value.fromAddress(outputToken)
-    )
-  )
-  redemptionEvent.parameters.push(
-    new ethereum.EventParam(
-      "inputAmount",
-      ethereum.Value.fromUnsignedBigInt(inputAmount)
-    )
-  )
-  redemptionEvent.parameters.push(
-    new ethereum.EventParam(
-      "outputAmount",
-      ethereum.Value.fromUnsignedBigInt(outputAmount)
-    )
-  )
-  redemptionEvent.parameters.push(
-    new ethereum.EventParam("time", ethereum.Value.fromUnsignedBigInt(time))
-  )
-
-  return redemptionEvent
-}
-
 export function createSupplyCeilingSetEvent(
   supplyCeiling: BigInt
 ): SupplyCeilingSet {
@@ -331,6 +236,28 @@ export function createToggledRestrictedEvent(
   )
 
   return toggledRestrictedEvent
+}
+
+export function createTransferEvent(
+  from: Address,
+  to: Address,
+  value: BigInt
+): Transfer {
+  let transferEvent = changetype<Transfer>(newMockEvent())
+
+  transferEvent.parameters = new Array()
+
+  transferEvent.parameters.push(
+    new ethereum.EventParam("from", ethereum.Value.fromAddress(from))
+  )
+  transferEvent.parameters.push(
+    new ethereum.EventParam("to", ethereum.Value.fromAddress(to))
+  )
+  transferEvent.parameters.push(
+    new ethereum.EventParam("value", ethereum.Value.fromUnsignedBigInt(value))
+  )
+
+  return transferEvent
 }
 
 export function createUnpausedEvent(account: Address): Unpaused {
