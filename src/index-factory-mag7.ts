@@ -1,3 +1,4 @@
+import { dataSource } from "@graphprotocol/graph-ts"
 import {
   Initialized as InitializedEvent,
   Issuanced as IssuancedEvent,
@@ -31,6 +32,7 @@ export function handleInitialized(event: InitializedEvent): void {
   let entity = new MAG7Initialized(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.version = event.params.version
 
   entity.blockNumber = event.block.number
@@ -44,6 +46,7 @@ export function handleIssuanced(event: IssuancedEvent): void {
   let entity = new MAG7Issuanced(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.nonce = event.params.nonce
   entity.user = event.params.user
   entity.inputToken = event.params.inputToken
@@ -62,6 +65,7 @@ export function handleIssuanceCancelled(event: IssuanceCancelledEvent): void {
   let entity = new MAG7IssuanceCancelled(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.nonce = event.params.nonce
   entity.user = event.params.user
   entity.inputToken = event.params.inputToken
@@ -82,6 +86,7 @@ export function handleRequestCancelIssuance(
   let entity = new MAG7RequestCancelIssuance(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.nonce = event.params.nonce
   entity.user = event.params.user
   entity.inputToken = event.params.inputToken
@@ -102,6 +107,7 @@ export function handleRequestCancelRedemption(
   let entity = new MAG7RequestCancelRedemption(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.nonce = event.params.nonce
   entity.user = event.params.user
   entity.outputToken = event.params.outputToken
@@ -122,6 +128,7 @@ export function handleOwnershipTransferred(
   let entity = new MAG7OwnershipTransferred(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.previousOwner = event.params.previousOwner
   entity.newOwner = event.params.newOwner
 
@@ -136,6 +143,7 @@ export function handlePaused(event: PausedEvent): void {
   let entity = new MAG7Paused(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.account = event.params.account
 
   entity.blockNumber = event.block.number
@@ -149,6 +157,7 @@ export function handleRedemption(event: RedemptionEvent): void {
   let entity = new MAG7Redemption(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.nonce = event.params.nonce
   entity.user = event.params.user
   entity.outputToken = event.params.outputToken
@@ -167,6 +176,7 @@ export function handleRequestIssuance(event: RequestIssuanceEvent): void {
   let entity = new MAG7RequestIssuance(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.nonce = event.params.nonce
   entity.user = event.params.user
   entity.inputToken = event.params.inputToken
@@ -185,6 +195,7 @@ export function handleRequestRedemption(event: RequestRedemptionEvent): void {
   let entity = new MAG7RequestRedemption(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.nonce = event.params.nonce
   entity.user = event.params.user
   entity.outputToken = event.params.outputToken
@@ -205,6 +216,7 @@ export function handleRedemptionCancelled(
   let entity = new MAG7RedemptionCancelled(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.nonce = event.params.nonce
   entity.user = event.params.user
   entity.outputToken = event.params.outputToken
@@ -223,6 +235,7 @@ export function handleUnpaused(event: UnpausedEvent): void {
   let entity = new MAG7Unpaused(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
+  entity.network = dataSource.network()
   entity.account = event.params.account
 
   entity.blockNumber = event.block.number
