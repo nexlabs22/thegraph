@@ -362,25 +362,13 @@ type MAG7Unpaused @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
-type ARBEIChainlinkCancelled @entity(immutable: true) {
-  id: Bytes!
-  IndexFactory_id: Bytes! # bytes32
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
 
-type ARBEIChainlinkFulfilled @entity(immutable: true) {
+type ARBEIApproval @entity(immutable: true) {
   id: Bytes!
-  IndexFactory_id: Bytes! # bytes32
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type ARBEIChainlinkRequested @entity(immutable: true) {
-  id: Bytes!
-  IndexFactory_id: Bytes! # bytes32
+  network: String! # string
+  owner: Bytes! # address
+  spender: Bytes! # address
+  value: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -388,6 +376,7 @@ type ARBEIChainlinkRequested @entity(immutable: true) {
 
 type ARBEIFeeRateSet @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   feeRatePerDayScaled: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -396,27 +385,17 @@ type ARBEIFeeRateSet @entity(immutable: true) {
 
 type ARBEIFeeReceiverSet @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   feeReceiver: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
 
-type Initialized @entity(immutable: true) {
+type ARBEIInitialized @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   version: Int! # uint8
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type ARBEIIssuanced @entity(immutable: true) {
-  id: Bytes!
-  user: Bytes! # address
-  inputToken: Bytes! # address
-  inputAmount: BigInt! # uint256
-  outputAmount: BigInt! # uint256
-  time: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -424,6 +403,7 @@ type ARBEIIssuanced @entity(immutable: true) {
 
 type ARBEIMethodologistSet @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   methodologist: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -432,6 +412,7 @@ type ARBEIMethodologistSet @entity(immutable: true) {
 
 type ARBEIMethodologySet @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   methodology: String! # string
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -440,6 +421,7 @@ type ARBEIMethodologySet @entity(immutable: true) {
 
 type ARBEIMintFeeToReceiver @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   feeReceiver: Bytes! # address
   timestamp: BigInt! # uint256
   totalSupply: BigInt! # uint256
@@ -451,14 +433,16 @@ type ARBEIMintFeeToReceiver @entity(immutable: true) {
 
 type ARBEIMinterSet @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   minter: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
 
-type OwnershipTransferred @entity(immutable: true) {
+type ARBEIOwnershipTransferred @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   previousOwner: Bytes! # address
   newOwner: Bytes! # address
   blockNumber: BigInt!
@@ -466,9 +450,62 @@ type OwnershipTransferred @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type Paused @entity(immutable: true) {
+type ARBEIPaused @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   account: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ARBEISupplyCeilingSet @entity(immutable: true) {
+  id: Bytes!
+  network: String! # string
+  supplyCeiling: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ARBEIToggledRestricted @entity(immutable: true) {
+  id: Bytes!
+  network: String! # string
+  account: Bytes! # address
+  isRestricted: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ARBEITransfer @entity(immutable: true) {
+  id: Bytes!
+  network: String! # string
+  from: Bytes! # address
+  to: Bytes! # address
+  value: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ARBEIUnpaused @entity(immutable: true) {
+  id: Bytes!
+  network: String! # string
+  account: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ARBEIIssuanced @entity(immutable: true) {
+  id: Bytes!
+  network: String! # string
+  user: Bytes! # address
+  inputToken: Bytes! # address
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  time: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -476,6 +513,7 @@ type Paused @entity(immutable: true) {
 
 type ARBEIRedemption @entity(immutable: true) {
   id: Bytes!
+  network: String! # string
   user: Bytes! # address
   outputToken: Bytes! # address
   inputAmount: BigInt! # uint256
@@ -486,27 +524,3 @@ type ARBEIRedemption @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type ARBEISupplyCeilingSet @entity(immutable: true) {
-  id: Bytes!
-  supplyCeiling: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type ARBEIToggledRestricted @entity(immutable: true) {
-  id: Bytes!
-  account: Bytes! # address
-  isRestricted: Boolean! # bool
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type Unpaused @entity(immutable: true) {
-  id: Bytes!
-  account: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}

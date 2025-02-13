@@ -1,70 +1,4 @@
 [
-  { "inputs": [], "name": "T", "type": "error" },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "bytes32",
-        "name": "id",
-        "type": "bytes32"
-      }
-    ],
-    "name": "ChainlinkCancelled",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "bytes32",
-        "name": "id",
-        "type": "bytes32"
-      }
-    ],
-    "name": "ChainlinkFulfilled",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "bytes32",
-        "name": "id",
-        "type": "bytes32"
-      }
-    ],
-    "name": "ChainlinkRequested",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "feeRatePerDayScaled",
-        "type": "uint256"
-      }
-    ],
-    "name": "FeeRateSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "feeReceiver",
-        "type": "address"
-      }
-    ],
-    "name": "FeeReceiverSet",
-    "type": "event"
-  },
   {
     "anonymous": false,
     "inputs": [
@@ -113,76 +47,6 @@
       }
     ],
     "name": "Issuanced",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "methodologist",
-        "type": "address"
-      }
-    ],
-    "name": "MethodologistSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "string",
-        "name": "methodology",
-        "type": "string"
-      }
-    ],
-    "name": "MethodologySet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "feeReceiver",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "timestamp",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "totalSupply",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "MintFeeToReceiver",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "minter",
-        "type": "address"
-      }
-    ],
-    "name": "MinterSet",
     "type": "event"
   },
   {
@@ -259,38 +123,6 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "supplyCeiling",
-        "type": "uint256"
-      }
-    ],
-    "name": "SupplyCeilingSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "isRestricted",
-        "type": "bool"
-      }
-    ],
-    "name": "ToggledRestricted",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
         "internalType": "address",
         "name": "account",
         "type": "address"
@@ -300,220 +132,14 @@
     "type": "event"
   },
   {
-    "inputs": [
-      { "internalType": "string", "name": "a", "type": "string" },
-      { "internalType": "string", "name": "b", "type": "string" }
-    ],
-    "name": "concatenation",
-    "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
-    "stateMutability": "pure",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "name": "currentList",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "tokenIn", "type": "address" },
-      { "internalType": "address", "name": "tokenOut", "type": "address" },
-      { "internalType": "uint128", "name": "amountIn", "type": "uint128" }
-    ],
-    "name": "estimateAmountOut",
-    "outputs": [
-      { "internalType": "uint256", "name": "amountOut", "type": "uint256" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [],
-    "name": "externalJobId",
-    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "factoryV2",
+    "name": "factoryStorage",
     "outputs": [
       {
-        "internalType": "contract IUniswapV2Factory",
+        "internalType": "contract IndexFactoryStorage",
         "name": "",
         "type": "address"
       }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "factoryV3",
-    "outputs": [
-      {
-        "internalType": "contract IUniswapV3Factory",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "fee",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "feeRate",
-    "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "feeRatePerDayScaled",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "feeReceiver",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "feeTimestamp",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "bytes32", "name": "requestId", "type": "bytes32" },
-      { "internalType": "address[]", "name": "_tokens", "type": "address[]" },
-      {
-        "internalType": "uint256[]",
-        "name": "_marketShares",
-        "type": "uint256[]"
-      },
-      {
-        "internalType": "uint256[]",
-        "name": "_swapVersions",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "fulfillAssetsData",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "tokenIn", "type": "address" },
-      { "internalType": "address", "name": "tokenOut", "type": "address" },
-      { "internalType": "uint256", "name": "amountIn", "type": "uint256" },
-      { "internalType": "uint256", "name": "_swapVersion", "type": "uint256" }
-    ],
-    "name": "getAmountOut",
-    "outputs": [
-      { "internalType": "uint256", "name": "finalAmountOut", "type": "uint256" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "tokenIn", "type": "address" },
-      { "internalType": "address", "name": "tokenOut", "type": "address" },
-      { "internalType": "uint256", "name": "amountIn", "type": "uint256" },
-      { "internalType": "uint256", "name": "_swapVersion", "type": "uint256" }
-    ],
-    "name": "getExactAmountOut",
-    "outputs": [
-      { "internalType": "uint256", "name": "finalAmountOut", "type": "uint256" }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "tokenIn", "type": "address" },
-      { "internalType": "address", "name": "tokenOut", "type": "address" },
-      { "internalType": "uint256", "name": "amountIn", "type": "uint256" }
-    ],
-    "name": "getExactAmountOut2",
-    "outputs": [
-      { "internalType": "uint256", "name": "finalAmountOut", "type": "uint256" }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "_amountIn", "type": "uint256" },
-      { "internalType": "address", "name": "_tokenIn", "type": "address" },
-      { "internalType": "uint256", "name": "_swapVersion", "type": "uint256" }
-    ],
-    "name": "getIssuanceAmountOut",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "_amountIn", "type": "uint256" },
-      { "internalType": "address", "name": "_tokenIn", "type": "address" },
-      { "internalType": "uint256", "name": "_swapVersion", "type": "uint256" }
-    ],
-    "name": "getIssuanceAmountOut2",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getPortfolioBalance",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "_amountIn", "type": "uint256" },
-      { "internalType": "address", "name": "_tokenOut", "type": "address" },
-      { "internalType": "uint256", "name": "_swapVersion", "type": "uint256" }
-    ],
-    "name": "getRedemptionAmountOut",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "_amountIn", "type": "uint256" },
-      { "internalType": "address", "name": "_tokenOut", "type": "address" },
-      { "internalType": "uint256", "name": "_swapVersion", "type": "uint256" }
-    ],
-    "name": "getRedemptionAmountOut2",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "indexToken",
-    "outputs": [
-      { "internalType": "contract IndexToken", "name": "", "type": "address" }
     ],
     "stateMutability": "view",
     "type": "function"
@@ -522,35 +148,9 @@
     "inputs": [
       {
         "internalType": "address payable",
-        "name": "_token",
+        "name": "_factoryStorage",
         "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_chainlinkToken",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_oracleAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "bytes32",
-        "name": "_externalJobId",
-        "type": "bytes32"
-      },
-      {
-        "internalType": "address",
-        "name": "_toUsdPriceFeed",
-        "type": "address"
-      },
-      { "internalType": "address", "name": "_weth", "type": "address" },
-      { "internalType": "address", "name": "_quoter", "type": "address" },
-      { "internalType": "address", "name": "_swapRouterV3", "type": "address" },
-      { "internalType": "address", "name": "_factoryV3", "type": "address" },
-      { "internalType": "address", "name": "_swapRouterV2", "type": "address" },
-      { "internalType": "address", "name": "_factoryV2", "type": "address" }
+      }
     ],
     "name": "initialize",
     "outputs": [],
@@ -558,21 +158,20 @@
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "name": "isRestricted",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       { "internalType": "address", "name": "_tokenIn", "type": "address" },
-      { "internalType": "uint256", "name": "_amountIn", "type": "uint256" },
       {
-        "internalType": "uint256",
-        "name": "_tokenInSwapVersion",
-        "type": "uint256"
-      }
+        "internalType": "address[]",
+        "name": "_tokenInPath",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint24[]",
+        "name": "_tokenInFees",
+        "type": "uint24[]"
+      },
+      { "internalType": "uint256", "name": "_amountIn", "type": "uint256" },
+      { "internalType": "uint24", "name": "_tokenInSwapFee", "type": "uint24" }
     ],
     "name": "issuanceIndexTokens",
     "outputs": [],
@@ -586,74 +185,6 @@
     "name": "issuanceIndexTokensWithEth",
     "outputs": [],
     "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "lastUpdateTime",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "latestFeeUpdate",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "methodologist",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "methodology",
-    "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "minter",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address[]", "name": "_tokens", "type": "address[]" },
-      {
-        "internalType": "uint256[]",
-        "name": "_marketShares",
-        "type": "uint256[]"
-      },
-      {
-        "internalType": "uint256[]",
-        "name": "_swapVersions",
-        "type": "uint256[]"
-      }
-    ],
-    "name": "mockFillAssetsList",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "name": "oracleList",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "oraclePayment",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -678,13 +209,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "priceInWei",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       { "internalType": "address", "name": "_proposedOwner", "type": "address" }
     ],
@@ -701,30 +225,20 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "quoter",
-    "outputs": [
-      { "internalType": "contract IQuoter", "name": "", "type": "address" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "reIndexAndReweight",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [
       { "internalType": "uint256", "name": "amountIn", "type": "uint256" },
       { "internalType": "address", "name": "_tokenOut", "type": "address" },
       {
-        "internalType": "uint256",
-        "name": "_tokenOutSwapVersion",
-        "type": "uint256"
-      }
+        "internalType": "address[]",
+        "name": "_tokenOutPath",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint24[]",
+        "name": "_tokenOutFees",
+        "type": "uint24[]"
+      },
+      { "internalType": "uint24", "name": "_tokenOutSwapFee", "type": "uint24" }
     ],
     "name": "redemption",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
@@ -736,134 +250,6 @@
     "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "requestAssetsData",
-    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "uint8", "name": "_newFee", "type": "uint8" }],
-    "name": "setFeeRate",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_toUsdPricefeed",
-        "type": "address"
-      }
-    ],
-    "name": "setPriceFeed",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "string", "name": "_beforeAddress", "type": "string" },
-      { "internalType": "string", "name": "_afterAddress", "type": "string" }
-    ],
-    "name": "setUrl",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "supplyCeiling",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "swapRouterV2",
-    "outputs": [
-      {
-        "internalType": "contract IUniswapV2Router02",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "swapRouterV3",
-    "outputs": [
-      { "internalType": "contract ISwapRouter", "name": "", "type": "address" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "toUsdPriceFeed",
-    "outputs": [
-      {
-        "internalType": "contract AggregatorV3Interface",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "name": "tokenCurrentListIndex",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "name": "tokenCurrentMarketShare",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "name": "tokenOracleListIndex",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "name": "tokenOracleMarketShare",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "name": "tokenSwapVersion",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "totalCurrentList",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "totalOracleList",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -880,15 +266,6 @@
     "name": "unpause",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "weth",
-    "outputs": [
-      { "internalType": "contract IWETH", "name": "", "type": "address" }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   { "stateMutability": "payable", "type": "receive" }

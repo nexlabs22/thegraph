@@ -6,20 +6,17 @@ import {
   beforeAll,
   afterAll
 } from "matchstick-as/assembly/index"
-import { Bytes, BigInt, Address } from "@graphprotocol/graph-ts"
-import { ChainlinkCancelled } from "../generated/schema"
-import { ChainlinkCancelled as ChainlinkCancelledEvent } from "../generated/IndexFactoryARBEI/IndexFactoryARBEI"
-import { handleChainlinkCancelled } from "../src/index-factory-arbei"
-import { createChainlinkCancelledEvent } from "./index-factory-utils"
+import { handleInitialized } from "../src/index-factory-arbei"
+import { createInitializedEvent } from "./index-factory-arbei-utils"
 
 // Tests structure (matchstick-as >=0.5.0)
 // https://thegraph.com/docs/en/developer/matchstick/#tests-structure-0-5-0
 
 describe("Describe entity assertions", () => {
   beforeAll(() => {
-    let id = Bytes.fromI32(1234567890)
-    let newChainlinkCancelledEvent = createChainlinkCancelledEvent(id)
-    handleChainlinkCancelled(newChainlinkCancelledEvent)
+    let version = 123
+    let newInitializedEvent = createInitializedEvent(version)
+    handleInitialized(newInitializedEvent)
   })
 
   afterAll(() => {
@@ -29,10 +26,16 @@ describe("Describe entity assertions", () => {
   // For more test scenarios, see:
   // https://thegraph.com/docs/en/developer/matchstick/#write-a-unit-test
 
-  test("ChainlinkCancelled created and stored", () => {
-    assert.entityCount("ChainlinkCancelled", 1)
+  test("Initialized created and stored", () => {
+    assert.entityCount("Initialized", 1)
 
     // 0xa16081f360e3847006db660bae1c6d1b2e17ec2a is the default address used in newMockEvent() function
+    assert.fieldEquals(
+      "Initialized",
+      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
+      "version",
+      "123"
+    )
 
     // More assert options:
     // https://thegraph.com/docs/en/developer/matchstick/#asserts
