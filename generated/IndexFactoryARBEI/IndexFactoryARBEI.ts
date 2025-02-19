@@ -57,8 +57,12 @@ export class Issuanced__Params {
     return this._event.parameters[3].value.toBigInt();
   }
 
-  get time(): BigInt {
+  get price(): BigInt {
     return this._event.parameters[4].value.toBigInt();
+  }
+
+  get time(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
   }
 }
 
@@ -131,8 +135,12 @@ export class Redemption__Params {
     return this._event.parameters[3].value.toBigInt();
   }
 
-  get time(): BigInt {
+  get price(): BigInt {
     return this._event.parameters[4].value.toBigInt();
+  }
+
+  get time(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
   }
 }
 
@@ -232,17 +240,15 @@ export class IndexFactoryARBEI extends ethereum.SmartContract {
     _tokenOut: Address,
     _tokenOutPath: Array<Address>,
     _tokenOutFees: Array<i32>,
-    _tokenOutSwapFee: i32,
   ): BigInt {
     let result = super.call(
       "redemption",
-      "redemption(uint256,address,address[],uint24[],uint24):(uint256)",
+      "redemption(uint256,address,address[],uint24[]):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(amountIn),
         ethereum.Value.fromAddress(_tokenOut),
         ethereum.Value.fromAddressArray(_tokenOutPath),
         ethereum.Value.fromI32Array(_tokenOutFees),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_tokenOutSwapFee)),
       ],
     );
 
@@ -254,17 +260,15 @@ export class IndexFactoryARBEI extends ethereum.SmartContract {
     _tokenOut: Address,
     _tokenOutPath: Array<Address>,
     _tokenOutFees: Array<i32>,
-    _tokenOutSwapFee: i32,
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "redemption",
-      "redemption(uint256,address,address[],uint24[],uint24):(uint256)",
+      "redemption(uint256,address,address[],uint24[]):(uint256)",
       [
         ethereum.Value.fromUnsignedBigInt(amountIn),
         ethereum.Value.fromAddress(_tokenOut),
         ethereum.Value.fromAddressArray(_tokenOutPath),
         ethereum.Value.fromI32Array(_tokenOutFees),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(_tokenOutSwapFee)),
       ],
     );
     if (result.reverted) {
@@ -336,10 +340,6 @@ export class IssuanceIndexTokensCall__Inputs {
 
   get _amountIn(): BigInt {
     return this._call.inputValues[3].value.toBigInt();
-  }
-
-  get _tokenInSwapFee(): i32 {
-    return this._call.inputValues[4].value.toI32();
   }
 }
 
@@ -469,10 +469,6 @@ export class RedemptionCall__Inputs {
   get _tokenOutFees(): Array<i32> {
     return this._call.inputValues[3].value.toI32Array();
   }
-
-  get _tokenOutSwapFee(): i32 {
-    return this._call.inputValues[4].value.toI32();
-  }
 }
 
 export class RedemptionCall__Outputs {
@@ -509,6 +505,36 @@ export class RenounceOwnershipCall__Outputs {
   _call: RenounceOwnershipCall;
 
   constructor(call: RenounceOwnershipCall) {
+    this._call = call;
+  }
+}
+
+export class SetFactoryStorageCall extends ethereum.Call {
+  get inputs(): SetFactoryStorageCall__Inputs {
+    return new SetFactoryStorageCall__Inputs(this);
+  }
+
+  get outputs(): SetFactoryStorageCall__Outputs {
+    return new SetFactoryStorageCall__Outputs(this);
+  }
+}
+
+export class SetFactoryStorageCall__Inputs {
+  _call: SetFactoryStorageCall;
+
+  constructor(call: SetFactoryStorageCall) {
+    this._call = call;
+  }
+
+  get _factoryStorage(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class SetFactoryStorageCall__Outputs {
+  _call: SetFactoryStorageCall;
+
+  constructor(call: SetFactoryStorageCall) {
     this._call = call;
   }
 }

@@ -6766,6 +6766,19 @@ export class ARBEIIssuanced extends Entity {
     this.set("outputAmount", Value.fromBigInt(value));
   }
 
+  get price(): BigInt {
+    let value = this.get("price");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set price(value: BigInt) {
+    this.set("price", Value.fromBigInt(value));
+  }
+
   get time(): BigInt {
     let value = this.get("time");
     if (!value || value.kind == ValueKind.NULL) {
@@ -6925,6 +6938,19 @@ export class ARBEIRedemption extends Entity {
 
   set outputAmount(value: BigInt) {
     this.set("outputAmount", Value.fromBigInt(value));
+  }
+
+  get price(): BigInt {
+    let value = this.get("price");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set price(value: BigInt) {
+    this.set("price", Value.fromBigInt(value));
   }
 
   get time(): BigInt {

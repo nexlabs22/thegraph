@@ -197,9 +197,9 @@ dataSources:
     name: IndexTokenARBEI
     network: sepolia
     source:
-      address: "0xE22A1e2bf573B84E6E676C49D2b5742aFB9Ba935"
+      address: "0x66B13DbCC6B107668f46174d0964030f103C3D3a"
       abi: IndexTokenARBEI
-      startBlock: 7595918
+      startBlock: 7692066
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -256,9 +256,9 @@ dataSources:
     name: IndexFactoryARBEI
     network: sepolia
     source:
-      address: "0x65B1DDD708dc7e169c831ae1F4Fd4Dc94bF0a417"
+      address: "0xdB3EB6589B99439d549E8d2c089F42aB2954d9c0"
       abi: IndexFactoryARBEI
-      startBlock: 7596001
+      startBlock: 7692133
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -276,13 +276,13 @@ dataSources:
       eventHandlers:
         - event: Initialized(uint8)
           handler: handleInitialized
-        - event: Issuanced(indexed address,indexed address,uint256,uint256,uint256)
+        - event: Issuanced(indexed address,indexed address,uint256,uint256,uint256,uint256)
           handler: handleIssuanced
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
         - event: Paused(address)
           handler: handlePaused
-        - event: Redemption(indexed address,indexed address,uint256,uint256,uint256)
+        - event: Redemption(indexed address,indexed address,uint256,uint256,uint256,uint256)
           handler: handleRedemption
         - event: Unpaused(address)
           handler: handleUnpaused

@@ -39,6 +39,7 @@ export function handleIssuanced(event: IssuancedEvent): void {
   entity.inputToken = event.params.inputToken
   entity.inputAmount = event.params.inputAmount
   entity.outputAmount = event.params.outputAmount
+  entity.price = event.params.price
   entity.time = event.params.time
 
   entity.blockNumber = event.block.number
@@ -88,6 +89,7 @@ export function handleRedemption(event: RedemptionEvent): void {
   entity.outputToken = event.params.outputToken
   entity.inputAmount = event.params.inputAmount
   entity.outputAmount = event.params.outputAmount
+  entity.price = event.params.price
   entity.time = event.params.time
 
   entity.blockNumber = event.block.number

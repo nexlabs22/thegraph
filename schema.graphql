@@ -541,6 +541,7 @@ type ARBEIIssuanced @entity(immutable: true) {
   inputToken: Bytes! # address
   inputAmount: BigInt! # uint256
   outputAmount: BigInt! # uint256
+  price: BigInt! #uint256
   time: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -554,6 +555,7 @@ type ARBEIRedemption @entity(immutable: true) {
   outputToken: Bytes! # address
   inputAmount: BigInt! # uint256
   outputAmount: BigInt! # uint256
+  price: BigInt! #uint256
   time: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
