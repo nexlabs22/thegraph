@@ -28,66 +28,6 @@ export class Initialized__Params {
   }
 }
 
-export class Issuanced extends ethereum.Event {
-  get params(): Issuanced__Params {
-    return new Issuanced__Params(this);
-  }
-}
-
-export class Issuanced__Params {
-  _event: Issuanced;
-
-  constructor(event: Issuanced) {
-    this._event = event;
-  }
-
-  get messageId(): Bytes {
-    return this._event.parameters[0].value.toBytes();
-  }
-
-  get nonce(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get user(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
-  get inputToken(): Address {
-    return this._event.parameters[3].value.toAddress();
-  }
-
-  get inputAmount(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-
-  get outputAmount(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-
-  get time(): BigInt {
-    return this._event.parameters[6].value.toBigInt();
-  }
-}
-
-export class MessageSent extends ethereum.Event {
-  get params(): MessageSent__Params {
-    return new MessageSent__Params(this);
-  }
-}
-
-export class MessageSent__Params {
-  _event: MessageSent;
-
-  constructor(event: MessageSent) {
-    this._event = event;
-  }
-
-  get messageId(): Bytes {
-    return this._event.parameters[0].value.toBytes();
-  }
-}
-
 export class OwnershipTransferred extends ethereum.Event {
   get params(): OwnershipTransferred__Params {
     return new OwnershipTransferred__Params(this);
@@ -107,48 +47,6 @@ export class OwnershipTransferred__Params {
 
   get newOwner(): Address {
     return this._event.parameters[1].value.toAddress();
-  }
-}
-
-export class Redemption extends ethereum.Event {
-  get params(): Redemption__Params {
-    return new Redemption__Params(this);
-  }
-}
-
-export class Redemption__Params {
-  _event: Redemption;
-
-  constructor(event: Redemption) {
-    this._event = event;
-  }
-
-  get messageId(): Bytes {
-    return this._event.parameters[0].value.toBytes();
-  }
-
-  get nonce(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-
-  get user(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
-  get outputToken(): Address {
-    return this._event.parameters[3].value.toAddress();
-  }
-
-  get inputAmount(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-
-  get outputAmount(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-
-  get time(): BigInt {
-    return this._event.parameters[6].value.toBigInt();
   }
 }
 
@@ -236,130 +134,24 @@ export class RequestRedemption__Params {
   }
 }
 
-export class IndexFactoryCRYPTO5__issuanceTokenOldAndNewValuesResult {
-  value0: BigInt;
-  value1: BigInt;
-
-  constructor(value0: BigInt, value1: BigInt) {
-    this.value0 = value0;
-    this.value1 = value1;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    return map;
-  }
-
-  getOldTokenValue(): BigInt {
-    return this.value0;
-  }
-
-  getNewTokenValue(): BigInt {
-    return this.value1;
-  }
-}
-
 export class IndexFactoryCRYPTO5 extends ethereum.SmartContract {
   static bind(address: Address): IndexFactoryCRYPTO5 {
     return new IndexFactoryCRYPTO5("IndexFactoryCRYPTO5", address);
   }
 
-  convertEthToUsd(_ethAmount: BigInt): BigInt {
-    let result = super.call(
-      "convertEthToUsd",
-      "convertEthToUsd(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_ethAmount)],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_convertEthToUsd(_ethAmount: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "convertEthToUsd",
-      "convertEthToUsd(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_ethAmount)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  crossChainFactoryBySelector(_chainSelector: BigInt): Address {
-    let result = super.call(
-      "crossChainFactoryBySelector",
-      "crossChainFactoryBySelector(uint64):(address)",
-      [ethereum.Value.fromUnsignedBigInt(_chainSelector)],
-    );
+  coreSender(): Address {
+    let result = super.call("coreSender", "coreSender():(address)", []);
 
     return result[0].toAddress();
   }
 
-  try_crossChainFactoryBySelector(
-    _chainSelector: BigInt,
-  ): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "crossChainFactoryBySelector",
-      "crossChainFactoryBySelector(uint64):(address)",
-      [ethereum.Value.fromUnsignedBigInt(_chainSelector)],
-    );
+  try_coreSender(): ethereum.CallResult<Address> {
+    let result = super.tryCall("coreSender", "coreSender():(address)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  crossChainToken(_chainSelector: BigInt): Address {
-    let result = super.call(
-      "crossChainToken",
-      "crossChainToken(uint64):(address)",
-      [ethereum.Value.fromUnsignedBigInt(_chainSelector)],
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_crossChainToken(_chainSelector: BigInt): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "crossChainToken",
-      "crossChainToken(uint64):(address)",
-      [ethereum.Value.fromUnsignedBigInt(_chainSelector)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  crossChainTokenSwapVersion(_chainSelector: BigInt): BigInt {
-    let result = super.call(
-      "crossChainTokenSwapVersion",
-      "crossChainTokenSwapVersion(uint64):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_chainSelector)],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_crossChainTokenSwapVersion(
-    _chainSelector: BigInt,
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "crossChainTokenSwapVersion",
-      "crossChainTokenSwapVersion(uint64):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_chainSelector)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   currentChainSelector(): BigInt {
@@ -385,138 +177,18 @@ export class IndexFactoryCRYPTO5 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  estimateAmountOut(
-    tokenIn: Address,
-    tokenOut: Address,
-    amountIn: BigInt,
-    secondsAgo: BigInt,
-  ): BigInt {
-    let result = super.call(
-      "estimateAmountOut",
-      "estimateAmountOut(address,address,uint128,uint32):(uint256)",
-      [
-        ethereum.Value.fromAddress(tokenIn),
-        ethereum.Value.fromAddress(tokenOut),
-        ethereum.Value.fromUnsignedBigInt(amountIn),
-        ethereum.Value.fromUnsignedBigInt(secondsAgo),
-      ],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_estimateAmountOut(
-    tokenIn: Address,
-    tokenOut: Address,
-    amountIn: BigInt,
-    secondsAgo: BigInt,
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "estimateAmountOut",
-      "estimateAmountOut(address,address,uint128,uint32):(uint256)",
-      [
-        ethereum.Value.fromAddress(tokenIn),
-        ethereum.Value.fromAddress(tokenOut),
-        ethereum.Value.fromUnsignedBigInt(amountIn),
-        ethereum.Value.fromUnsignedBigInt(secondsAgo),
-      ],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  feeRate(): i32 {
-    let result = super.call("feeRate", "feeRate():(uint8)", []);
-
-    return result[0].toI32();
-  }
-
-  try_feeRate(): ethereum.CallResult<i32> {
-    let result = super.tryCall("feeRate", "feeRate():(uint8)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
-  }
-
-  getAmountOut(
-    tokenIn: Address,
-    tokenOut: Address,
-    amountIn: BigInt,
-    _swapVersion: BigInt,
-  ): BigInt {
-    let result = super.call(
-      "getAmountOut",
-      "getAmountOut(address,address,uint256,uint256):(uint256)",
-      [
-        ethereum.Value.fromAddress(tokenIn),
-        ethereum.Value.fromAddress(tokenOut),
-        ethereum.Value.fromUnsignedBigInt(amountIn),
-        ethereum.Value.fromUnsignedBigInt(_swapVersion),
-      ],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getAmountOut(
-    tokenIn: Address,
-    tokenOut: Address,
-    amountIn: BigInt,
-    _swapVersion: BigInt,
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getAmountOut",
-      "getAmountOut(address,address,uint256,uint256):(uint256)",
-      [
-        ethereum.Value.fromAddress(tokenIn),
-        ethereum.Value.fromAddress(tokenOut),
-        ethereum.Value.fromUnsignedBigInt(amountIn),
-        ethereum.Value.fromUnsignedBigInt(_swapVersion),
-      ],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getPortfolioBalance(): BigInt {
-    let result = super.call(
-      "getPortfolioBalance",
-      "getPortfolioBalance():(uint256)",
-      [],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getPortfolioBalance(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getPortfolioBalance",
-      "getPortfolioBalance():(uint256)",
-      [],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getRouter(): Address {
-    let result = super.call("getRouter", "getRouter():(address)", []);
+  factoryStorage(): Address {
+    let result = super.call("factoryStorage", "factoryStorage():(address)", []);
 
     return result[0].toAddress();
   }
 
-  try_getRouter(): ethereum.CallResult<Address> {
-    let result = super.tryCall("getRouter", "getRouter():(address)", []);
+  try_factoryStorage(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "factoryStorage",
+      "factoryStorage():(address)",
+      [],
+    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -524,58 +196,20 @@ export class IndexFactoryCRYPTO5 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  i_link(): Address {
-    let result = super.call("i_link", "i_link():(address)", []);
-
-    return result[0].toAddress();
-  }
-
-  try_i_link(): ethereum.CallResult<Address> {
-    let result = super.tryCall("i_link", "i_link():(address)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  i_maxTokensLength(): i32 {
+  functionsOracle(): Address {
     let result = super.call(
-      "i_maxTokensLength",
-      "i_maxTokensLength():(uint16)",
-      [],
-    );
-
-    return result[0].toI32();
-  }
-
-  try_i_maxTokensLength(): ethereum.CallResult<i32> {
-    let result = super.tryCall(
-      "i_maxTokensLength",
-      "i_maxTokensLength():(uint16)",
-      [],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toI32());
-  }
-
-  indexFactoryStorage(): Address {
-    let result = super.call(
-      "indexFactoryStorage",
-      "indexFactoryStorage():(address)",
+      "functionsOracle",
+      "functionsOracle():(address)",
       [],
     );
 
     return result[0].toAddress();
   }
 
-  try_indexFactoryStorage(): ethereum.CallResult<Address> {
+  try_functionsOracle(): ethereum.CallResult<Address> {
     let result = super.tryCall(
-      "indexFactoryStorage",
-      "indexFactoryStorage():(address)",
+      "functionsOracle",
+      "functionsOracle():(address)",
       [],
     );
     if (result.reverted) {
@@ -600,208 +234,6 @@ export class IndexFactoryCRYPTO5 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  issuanceCompletedTokensCount(param0: BigInt): BigInt {
-    let result = super.call(
-      "issuanceCompletedTokensCount",
-      "issuanceCompletedTokensCount(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_issuanceCompletedTokensCount(
-    param0: BigInt,
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "issuanceCompletedTokensCount",
-      "issuanceCompletedTokensCount(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  issuanceInputAmount(param0: BigInt): BigInt {
-    let result = super.call(
-      "issuanceInputAmount",
-      "issuanceInputAmount(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_issuanceInputAmount(param0: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "issuanceInputAmount",
-      "issuanceInputAmount(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  issuanceInputToken(param0: BigInt): Address {
-    let result = super.call(
-      "issuanceInputToken",
-      "issuanceInputToken(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_issuanceInputToken(param0: BigInt): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "issuanceInputToken",
-      "issuanceInputToken(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  issuanceMessageIdByNonce(param0: BigInt): Bytes {
-    let result = super.call(
-      "issuanceMessageIdByNonce",
-      "issuanceMessageIdByNonce(uint256):(bytes32)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toBytes();
-  }
-
-  try_issuanceMessageIdByNonce(param0: BigInt): ethereum.CallResult<Bytes> {
-    let result = super.tryCall(
-      "issuanceMessageIdByNonce",
-      "issuanceMessageIdByNonce(uint256):(bytes32)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
-  issuanceNonce(): BigInt {
-    let result = super.call("issuanceNonce", "issuanceNonce():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_issuanceNonce(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "issuanceNonce",
-      "issuanceNonce():(uint256)",
-      [],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  issuanceNonceRequester(param0: BigInt): Address {
-    let result = super.call(
-      "issuanceNonceRequester",
-      "issuanceNonceRequester(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_issuanceNonceRequester(param0: BigInt): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "issuanceNonceRequester",
-      "issuanceNonceRequester(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  issuanceTokenOldAndNewValues(
-    param0: BigInt,
-    param1: Address,
-  ): IndexFactoryCRYPTO5__issuanceTokenOldAndNewValuesResult {
-    let result = super.call(
-      "issuanceTokenOldAndNewValues",
-      "issuanceTokenOldAndNewValues(uint256,address):(uint256,uint256)",
-      [
-        ethereum.Value.fromUnsignedBigInt(param0),
-        ethereum.Value.fromAddress(param1),
-      ],
-    );
-
-    return new IndexFactoryCRYPTO5__issuanceTokenOldAndNewValuesResult(
-      result[0].toBigInt(),
-      result[1].toBigInt(),
-    );
-  }
-
-  try_issuanceTokenOldAndNewValues(
-    param0: BigInt,
-    param1: Address,
-  ): ethereum.CallResult<IndexFactoryCRYPTO5__issuanceTokenOldAndNewValuesResult> {
-    let result = super.tryCall(
-      "issuanceTokenOldAndNewValues",
-      "issuanceTokenOldAndNewValues(uint256,address):(uint256,uint256)",
-      [
-        ethereum.Value.fromUnsignedBigInt(param0),
-        ethereum.Value.fromAddress(param1),
-      ],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new IndexFactoryCRYPTO5__issuanceTokenOldAndNewValuesResult(
-        value[0].toBigInt(),
-        value[1].toBigInt(),
-      ),
-    );
-  }
-
-  latestFeeUpdate(): BigInt {
-    let result = super.call(
-      "latestFeeUpdate",
-      "latestFeeUpdate():(uint256)",
-      [],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_latestFeeUpdate(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "latestFeeUpdate",
-      "latestFeeUpdate():(uint256)",
-      [],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   owner(): Address {
     let result = super.call("owner", "owner():(address)", []);
 
@@ -815,44 +247,6 @@ export class IndexFactoryCRYPTO5 extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  portfolioTotalValueByNonce(param0: BigInt): BigInt {
-    let result = super.call(
-      "portfolioTotalValueByNonce",
-      "portfolioTotalValueByNonce(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_portfolioTotalValueByNonce(param0: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "portfolioTotalValueByNonce",
-      "portfolioTotalValueByNonce(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  priceInWei(): BigInt {
-    let result = super.call("priceInWei", "priceInWei():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_priceInWei(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("priceInWei", "priceInWei():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   proposedOwner(): Address {
@@ -874,408 +268,6 @@ export class IndexFactoryCRYPTO5 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  redemptionCompletedTokensCount(param0: BigInt): BigInt {
-    let result = super.call(
-      "redemptionCompletedTokensCount",
-      "redemptionCompletedTokensCount(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_redemptionCompletedTokensCount(
-    param0: BigInt,
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "redemptionCompletedTokensCount",
-      "redemptionCompletedTokensCount(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  redemptionInputAmount(param0: BigInt): BigInt {
-    let result = super.call(
-      "redemptionInputAmount",
-      "redemptionInputAmount(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_redemptionInputAmount(param0: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "redemptionInputAmount",
-      "redemptionInputAmount(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  redemptionMessageIdByNonce(param0: BigInt): Bytes {
-    let result = super.call(
-      "redemptionMessageIdByNonce",
-      "redemptionMessageIdByNonce(uint256):(bytes32)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toBytes();
-  }
-
-  try_redemptionMessageIdByNonce(param0: BigInt): ethereum.CallResult<Bytes> {
-    let result = super.tryCall(
-      "redemptionMessageIdByNonce",
-      "redemptionMessageIdByNonce(uint256):(bytes32)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
-  redemptionNonce(): BigInt {
-    let result = super.call(
-      "redemptionNonce",
-      "redemptionNonce():(uint256)",
-      [],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_redemptionNonce(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "redemptionNonce",
-      "redemptionNonce():(uint256)",
-      [],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  redemptionNonceOutputToken(param0: BigInt): Address {
-    let result = super.call(
-      "redemptionNonceOutputToken",
-      "redemptionNonceOutputToken(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_redemptionNonceOutputToken(param0: BigInt): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "redemptionNonceOutputToken",
-      "redemptionNonceOutputToken(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  redemptionNonceOutputTokenSwapVersion(param0: BigInt): BigInt {
-    let result = super.call(
-      "redemptionNonceOutputTokenSwapVersion",
-      "redemptionNonceOutputTokenSwapVersion(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_redemptionNonceOutputTokenSwapVersion(
-    param0: BigInt,
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "redemptionNonceOutputTokenSwapVersion",
-      "redemptionNonceOutputTokenSwapVersion(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  redemptionNonceRequester(param0: BigInt): Address {
-    let result = super.call(
-      "redemptionNonceRequester",
-      "redemptionNonceRequester(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_redemptionNonceRequester(param0: BigInt): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "redemptionNonceRequester",
-      "redemptionNonceRequester(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  redemptionNonceTotalValue(param0: BigInt): BigInt {
-    let result = super.call(
-      "redemptionNonceTotalValue",
-      "redemptionNonceTotalValue(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_redemptionNonceTotalValue(param0: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "redemptionNonceTotalValue",
-      "redemptionNonceTotalValue(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  redemptionOutputToken(param0: BigInt): Address {
-    let result = super.call(
-      "redemptionOutputToken",
-      "redemptionOutputToken(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_redemptionOutputToken(param0: BigInt): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "redemptionOutputToken",
-      "redemptionOutputToken(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  sendMessage(
-    destinationChainSelector: BigInt,
-    receiver: Address,
-    _data: Bytes,
-    payFeesIn: i32,
-  ): Bytes {
-    let result = super.call(
-      "sendMessage",
-      "sendMessage(uint64,address,bytes,uint8):(bytes32)",
-      [
-        ethereum.Value.fromUnsignedBigInt(destinationChainSelector),
-        ethereum.Value.fromAddress(receiver),
-        ethereum.Value.fromBytes(_data),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(payFeesIn)),
-      ],
-    );
-
-    return result[0].toBytes();
-  }
-
-  try_sendMessage(
-    destinationChainSelector: BigInt,
-    receiver: Address,
-    _data: Bytes,
-    payFeesIn: i32,
-  ): ethereum.CallResult<Bytes> {
-    let result = super.tryCall(
-      "sendMessage",
-      "sendMessage(uint64,address,bytes,uint8):(bytes32)",
-      [
-        ethereum.Value.fromUnsignedBigInt(destinationChainSelector),
-        ethereum.Value.fromAddress(receiver),
-        ethereum.Value.fromBytes(_data),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(payFeesIn)),
-      ],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
-  }
-
-  supportsInterface(interfaceId: Bytes): boolean {
-    let result = super.call(
-      "supportsInterface",
-      "supportsInterface(bytes4):(bool)",
-      [ethereum.Value.fromFixedBytes(interfaceId)],
-    );
-
-    return result[0].toBoolean();
-  }
-
-  try_supportsInterface(interfaceId: Bytes): ethereum.CallResult<boolean> {
-    let result = super.tryCall(
-      "supportsInterface",
-      "supportsInterface(bytes4):(bool)",
-      [ethereum.Value.fromFixedBytes(interfaceId)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  swap(
-    tokenIn: Address,
-    tokenOut: Address,
-    amountIn: BigInt,
-    _recipient: Address,
-    _swapVersion: BigInt,
-  ): BigInt {
-    let result = super.call(
-      "swap",
-      "swap(address,address,uint256,address,uint256):(uint256)",
-      [
-        ethereum.Value.fromAddress(tokenIn),
-        ethereum.Value.fromAddress(tokenOut),
-        ethereum.Value.fromUnsignedBigInt(amountIn),
-        ethereum.Value.fromAddress(_recipient),
-        ethereum.Value.fromUnsignedBigInt(_swapVersion),
-      ],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_swap(
-    tokenIn: Address,
-    tokenOut: Address,
-    amountIn: BigInt,
-    _recipient: Address,
-    _swapVersion: BigInt,
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "swap",
-      "swap(address,address,uint256,address,uint256):(uint256)",
-      [
-        ethereum.Value.fromAddress(tokenIn),
-        ethereum.Value.fromAddress(tokenOut),
-        ethereum.Value.fromUnsignedBigInt(amountIn),
-        ethereum.Value.fromAddress(_recipient),
-        ethereum.Value.fromUnsignedBigInt(_swapVersion),
-      ],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  tokenValueByNonce(param0: BigInt, param1: Address): BigInt {
-    let result = super.call(
-      "tokenValueByNonce",
-      "tokenValueByNonce(uint256,address):(uint256)",
-      [
-        ethereum.Value.fromUnsignedBigInt(param0),
-        ethereum.Value.fromAddress(param1),
-      ],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_tokenValueByNonce(
-    param0: BigInt,
-    param1: Address,
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "tokenValueByNonce",
-      "tokenValueByNonce(uint256,address):(uint256)",
-      [
-        ethereum.Value.fromUnsignedBigInt(param0),
-        ethereum.Value.fromAddress(param1),
-      ],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  updatePortfolioNonce(): BigInt {
-    let result = super.call(
-      "updatePortfolioNonce",
-      "updatePortfolioNonce():(uint256)",
-      [],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_updatePortfolioNonce(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "updatePortfolioNonce",
-      "updatePortfolioNonce():(uint256)",
-      [],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  updatedTokensValueCount(param0: BigInt): BigInt {
-    let result = super.call(
-      "updatedTokensValueCount",
-      "updatedTokensValueCount(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_updatedTokensValueCount(param0: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "updatedTokensValueCount",
-      "updatedTokensValueCount(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(param0)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   weth(): Address {
     let result = super.call("weth", "weth():(address)", []);
 
@@ -1289,70 +281,6 @@ export class IndexFactoryCRYPTO5 extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-}
-
-export class CcipReceiveCall extends ethereum.Call {
-  get inputs(): CcipReceiveCall__Inputs {
-    return new CcipReceiveCall__Inputs(this);
-  }
-
-  get outputs(): CcipReceiveCall__Outputs {
-    return new CcipReceiveCall__Outputs(this);
-  }
-}
-
-export class CcipReceiveCall__Inputs {
-  _call: CcipReceiveCall;
-
-  constructor(call: CcipReceiveCall) {
-    this._call = call;
-  }
-
-  get message(): CcipReceiveCallMessageStruct {
-    return changetype<CcipReceiveCallMessageStruct>(
-      this._call.inputValues[0].value.toTuple(),
-    );
-  }
-}
-
-export class CcipReceiveCall__Outputs {
-  _call: CcipReceiveCall;
-
-  constructor(call: CcipReceiveCall) {
-    this._call = call;
-  }
-}
-
-export class CcipReceiveCallMessageStruct extends ethereum.Tuple {
-  get messageId(): Bytes {
-    return this[0].toBytes();
-  }
-
-  get sourceChainSelector(): BigInt {
-    return this[1].toBigInt();
-  }
-
-  get sender(): Bytes {
-    return this[2].toBytes();
-  }
-
-  get data(): Bytes {
-    return this[3].toBytes();
-  }
-
-  get destTokenAmounts(): Array<CcipReceiveCallMessageDestTokenAmountsStruct> {
-    return this[4].toTupleArray<CcipReceiveCallMessageDestTokenAmountsStruct>();
-  }
-}
-
-export class CcipReceiveCallMessageDestTokenAmountsStruct extends ethereum.Tuple {
-  get token(): Address {
-    return this[0].toAddress();
-  }
-
-  get amount(): BigInt {
-    return this[1].toBigInt();
   }
 }
 
@@ -1381,16 +309,20 @@ export class InitializeCall__Inputs {
     return this._call.inputValues[1].value.toAddress();
   }
 
-  get _chainlinkToken(): Address {
+  get _indexFactoryStorage(): Address {
     return this._call.inputValues[2].value.toAddress();
   }
 
-  get _router(): Address {
+  get _functionsOracle(): Address {
     return this._call.inputValues[3].value.toAddress();
   }
 
-  get _weth(): Address {
+  get _coreSender(): Address {
     return this._call.inputValues[4].value.toAddress();
+  }
+
+  get _weth(): Address {
+    return this._call.inputValues[5].value.toAddress();
   }
 }
 
@@ -1423,16 +355,20 @@ export class IssuanceIndexTokensCall__Inputs {
     return this._call.inputValues[0].value.toAddress();
   }
 
+  get _tokenInPath(): Array<Address> {
+    return this._call.inputValues[1].value.toAddressArray();
+  }
+
+  get _tokenInFees(): Array<i32> {
+    return this._call.inputValues[2].value.toI32Array();
+  }
+
   get _inputAmount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
+    return this._call.inputValues[3].value.toBigInt();
   }
 
   get _crossChainFee(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-
-  get _tokenInSwapVersion(): BigInt {
-    return this._call.inputValues[3].value.toBigInt();
+    return this._call.inputValues[4].value.toBigInt();
   }
 }
 
@@ -1537,8 +473,12 @@ export class RedemptionCall__Inputs {
     return this._call.inputValues[2].value.toAddress();
   }
 
-  get _tokenOutSwapVersion(): BigInt {
-    return this._call.inputValues[3].value.toBigInt();
+  get _tokenOutPath(): Array<Address> {
+    return this._call.inputValues[3].value.toAddressArray();
+  }
+
+  get _tokenOutFees(): Array<i32> {
+    return this._call.inputValues[4].value.toI32Array();
   }
 }
 
@@ -1547,10 +487,6 @@ export class RedemptionCall__Outputs {
 
   constructor(call: RedemptionCall) {
     this._call = call;
-  }
-
-  get value0(): BigInt {
-    return this._call.outputValues[0].value.toBigInt();
   }
 }
 
@@ -1580,78 +516,62 @@ export class RenounceOwnershipCall__Outputs {
   }
 }
 
-export class SendMessageCall extends ethereum.Call {
-  get inputs(): SendMessageCall__Inputs {
-    return new SendMessageCall__Inputs(this);
+export class SetCoreSenderCall extends ethereum.Call {
+  get inputs(): SetCoreSenderCall__Inputs {
+    return new SetCoreSenderCall__Inputs(this);
   }
 
-  get outputs(): SendMessageCall__Outputs {
-    return new SendMessageCall__Outputs(this);
+  get outputs(): SetCoreSenderCall__Outputs {
+    return new SetCoreSenderCall__Outputs(this);
   }
 }
 
-export class SendMessageCall__Inputs {
-  _call: SendMessageCall;
+export class SetCoreSenderCall__Inputs {
+  _call: SetCoreSenderCall;
 
-  constructor(call: SendMessageCall) {
+  constructor(call: SetCoreSenderCall) {
     this._call = call;
   }
 
-  get destinationChainSelector(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get receiver(): Address {
-    return this._call.inputValues[1].value.toAddress();
-  }
-
-  get _data(): Bytes {
-    return this._call.inputValues[2].value.toBytes();
-  }
-
-  get payFeesIn(): i32 {
-    return this._call.inputValues[3].value.toI32();
+  get _coreSender(): Address {
+    return this._call.inputValues[0].value.toAddress();
   }
 }
 
-export class SendMessageCall__Outputs {
-  _call: SendMessageCall;
+export class SetCoreSenderCall__Outputs {
+  _call: SetCoreSenderCall;
 
-  constructor(call: SendMessageCall) {
+  constructor(call: SetCoreSenderCall) {
+    this._call = call;
+  }
+}
+
+export class SetFunctionsOracleCall extends ethereum.Call {
+  get inputs(): SetFunctionsOracleCall__Inputs {
+    return new SetFunctionsOracleCall__Inputs(this);
+  }
+
+  get outputs(): SetFunctionsOracleCall__Outputs {
+    return new SetFunctionsOracleCall__Outputs(this);
+  }
+}
+
+export class SetFunctionsOracleCall__Inputs {
+  _call: SetFunctionsOracleCall;
+
+  constructor(call: SetFunctionsOracleCall) {
     this._call = call;
   }
 
-  get value0(): Bytes {
-    return this._call.outputValues[0].value.toBytes();
+  get _functionsOracle(): Address {
+    return this._call.inputValues[0].value.toAddress();
   }
 }
 
-export class SetFeeRateCall extends ethereum.Call {
-  get inputs(): SetFeeRateCall__Inputs {
-    return new SetFeeRateCall__Inputs(this);
-  }
+export class SetFunctionsOracleCall__Outputs {
+  _call: SetFunctionsOracleCall;
 
-  get outputs(): SetFeeRateCall__Outputs {
-    return new SetFeeRateCall__Outputs(this);
-  }
-}
-
-export class SetFeeRateCall__Inputs {
-  _call: SetFeeRateCall;
-
-  constructor(call: SetFeeRateCall) {
-    this._call = call;
-  }
-
-  get _newFee(): i32 {
-    return this._call.inputValues[0].value.toI32();
-  }
-}
-
-export class SetFeeRateCall__Outputs {
-  _call: SetFeeRateCall;
-
-  constructor(call: SetFeeRateCall) {
+  constructor(call: SetFunctionsOracleCall) {
     this._call = call;
   }
 }
@@ -1673,7 +593,7 @@ export class SetIndexFactoryStorageCall__Inputs {
     this._call = call;
   }
 
-  get _indexFactoryStorage(): Address {
+  get _factoryStorage(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 }
@@ -1683,56 +603,6 @@ export class SetIndexFactoryStorageCall__Outputs {
 
   constructor(call: SetIndexFactoryStorageCall) {
     this._call = call;
-  }
-}
-
-export class SwapCall extends ethereum.Call {
-  get inputs(): SwapCall__Inputs {
-    return new SwapCall__Inputs(this);
-  }
-
-  get outputs(): SwapCall__Outputs {
-    return new SwapCall__Outputs(this);
-  }
-}
-
-export class SwapCall__Inputs {
-  _call: SwapCall;
-
-  constructor(call: SwapCall) {
-    this._call = call;
-  }
-
-  get tokenIn(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get tokenOut(): Address {
-    return this._call.inputValues[1].value.toAddress();
-  }
-
-  get amountIn(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-
-  get _recipient(): Address {
-    return this._call.inputValues[3].value.toAddress();
-  }
-
-  get _swapVersion(): BigInt {
-    return this._call.inputValues[4].value.toBigInt();
-  }
-}
-
-export class SwapCall__Outputs {
-  _call: SwapCall;
-
-  constructor(call: SwapCall) {
-    this._call = call;
-  }
-
-  get value0(): BigInt {
-    return this._call.outputValues[0].value.toBigInt();
   }
 }
 
