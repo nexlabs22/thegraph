@@ -5,25 +5,21 @@ import {
   MessageSent as MessageSentEvent,
   OwnershipTransferred as OwnershipTransferredEvent,
   Redemption as RedemptionEvent,
-  RequestIssuance as RequestIssuanceEvent,
-  RequestRedemption as RequestRedemptionEvent,
-} from "../generated/IndexFactoryCRYPTO5/IndexFactoryCRYPTO5"
+} from "../generated/IndexCoreSenderANFI/IndexCoreSenderANFI"
 import {
-  CRYPTO5Initialized,
-  CRYPTO5Issuanced,
-  MessageSent,
-  CRYPTO5OwnershipTransferred,
-  CRYPTO5Redemption,
-  CRYPTO5RequestIssuance,
-  CRYPTO5RequestRedemption,
+  ANFIInitialized,
+  ANFIIssuanced,
+  ANFIMessageSent,
+  ANFIOwnershipTransferred,
+  ANFIRedemption,
 } from "../generated/schema"
 
 export function handleInitialized(event: InitializedEvent): void {
-  let entity = new CRYPTO5Initialized(
+  let entity = new ANFIInitialized(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
-  entity.network = dataSource.network()
   entity.version = event.params.version
+  entity.network = dataSource.network()
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
@@ -33,17 +29,18 @@ export function handleInitialized(event: InitializedEvent): void {
 }
 
 export function handleIssuanced(event: IssuancedEvent): void {
-  let entity = new CRYPTO5Issuanced(
+  let entity = new ANFIIssuanced(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
-  entity.network = dataSource.network()
   entity.messageId = event.params.messageId
   entity.nonce = event.params.nonce
   entity.user = event.params.user
   entity.inputToken = event.params.inputToken
   entity.inputAmount = event.params.inputAmount
   entity.outputAmount = event.params.outputAmount
+  entity.price = event.params.price
   entity.time = event.params.time
+  entity.network = dataSource.network()
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
@@ -53,11 +50,11 @@ export function handleIssuanced(event: IssuancedEvent): void {
 }
 
 export function handleMessageSent(event: MessageSentEvent): void {
-  let entity = new MessageSent(
+  let entity = new ANFIMessageSent(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
-  entity.network = dataSource.network()
   entity.messageId = event.params.messageId
+  entity.network = dataSource.network()
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
@@ -69,12 +66,12 @@ export function handleMessageSent(event: MessageSentEvent): void {
 export function handleOwnershipTransferred(
   event: OwnershipTransferredEvent,
 ): void {
-  let entity = new CRYPTO5OwnershipTransferred(
+  let entity = new ANFIOwnershipTransferred(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
-  entity.network = dataSource.network()
   entity.previousOwner = event.params.previousOwner
   entity.newOwner = event.params.newOwner
+  entity.network = dataSource.network()
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
@@ -84,57 +81,18 @@ export function handleOwnershipTransferred(
 }
 
 export function handleRedemption(event: RedemptionEvent): void {
-  let entity = new CRYPTO5Redemption(
+  let entity = new ANFIRedemption(
     event.transaction.hash.concatI32(event.logIndex.toI32()),
   )
-  entity.network = dataSource.network()
   entity.messageId = event.params.messageId
   entity.nonce = event.params.nonce
   entity.user = event.params.user
   entity.outputToken = event.params.outputToken
   entity.inputAmount = event.params.inputAmount
   entity.outputAmount = event.params.outputAmount
+  entity.price = event.params.price
   entity.time = event.params.time
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleRequestIssuance(event: RequestIssuanceEvent): void {
-  let entity = new CRYPTO5RequestIssuance(
-    event.transaction.hash.concatI32(event.logIndex.toI32()),
-  )
   entity.network = dataSource.network()
-  entity.messageId = event.params.messageId
-  entity.nonce = event.params.nonce
-  entity.user = event.params.user
-  entity.inputToken = event.params.inputToken
-  entity.inputAmount = event.params.inputAmount
-  entity.outputAmount = event.params.outputAmount
-  entity.time = event.params.time
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleRequestRedemption(event: RequestRedemptionEvent): void {
-  let entity = new CRYPTO5RequestRedemption(
-    event.transaction.hash.concatI32(event.logIndex.toI32()),
-  )
-  entity.network = dataSource.network()
-  entity.messageId = event.params.messageId
-  entity.nonce = event.params.nonce
-  entity.user = event.params.user
-  entity.outputToken = event.params.outputToken
-  entity.inputAmount = event.params.inputAmount
-  entity.outputAmount = event.params.outputAmount
-  entity.time = event.params.time
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp

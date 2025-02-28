@@ -1,13 +1,5 @@
 {
   "sepolia": {
-    "IndexFactoryAnfi": {
-      "address": "0x7427E998D4db46E15f831e4Cff0393Ebb277c637",
-      "startBlock": 5296329
-    },
-    "IndexFactoryCR5": {
-      "address": "0xCd16eDa751CcC77f780E06B7Af9aeD0E90a51586",
-      "startBlock": 5565101
-    },
     "IndexFactoryMAG7": {
       "address": "0x5EBD4Ac25ADbb238941086b7e2a87672f93919a4",
       "startBlock": 6513703
@@ -23,6 +15,15 @@
     "IndexFactoryARBEI": {
       "address": "0xdB3EB6589B99439d549E8d2c089F42aB2954d9c0",
       "startBlock": 7692133
+    },
+    "IndexFactoryANFI": {
+      "address": "0x722e226f39e68889603f3BD758b5bF1c23683b59"
+    },
+    "IndexTokenANFI": {
+      "address": "0xD01eA42518fcCf1d6D1A12ceD4fEBCE6bc19d4d7"
+    },
+    "IndexCoreSenderANFI": {
+      "address": "0x87639D2B2cE9A1547c371897D26743e2CfB331C2"
     }
   }
 }

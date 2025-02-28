@@ -1,5 +1,12 @@
 [
   {
+    "inputs": [
+      { "internalType": "address", "name": "router", "type": "address" }
+    ],
+    "name": "InvalidRouter",
+    "type": "error"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
@@ -10,6 +17,74 @@
       }
     ],
     "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "messageId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "nonce",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "inputToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "inputAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "outputAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "time",
+        "type": "uint256"
+      }
+    ],
+    "name": "Issuanced",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "messageId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "MessageSent",
     "type": "event"
   },
   {
@@ -55,55 +130,6 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "inputToken",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "inputAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "outputAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "time",
-        "type": "uint256"
-      }
-    ],
-    "name": "RequestIssuance",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "bytes32",
-        "name": "messageId",
-        "type": "bytes32"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint256",
-        "name": "nonce",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "user",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "outputToken",
         "type": "address"
       },
@@ -122,27 +148,49 @@
       {
         "indexed": false,
         "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "time",
         "type": "uint256"
       }
     ],
-    "name": "RequestRedemption",
+    "name": "Redemption",
     "type": "event"
   },
   {
-    "inputs": [],
-    "name": "coreSender",
-    "outputs": [
-      { "internalType": "contract CoreSender", "name": "", "type": "address" }
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "bytes32", "name": "messageId", "type": "bytes32" },
+          {
+            "internalType": "uint64",
+            "name": "sourceChainSelector",
+            "type": "uint64"
+          },
+          { "internalType": "bytes", "name": "sender", "type": "bytes" },
+          { "internalType": "bytes", "name": "data", "type": "bytes" },
+          {
+            "components": [
+              { "internalType": "address", "name": "token", "type": "address" },
+              { "internalType": "uint256", "name": "amount", "type": "uint256" }
+            ],
+            "internalType": "struct Client.EVMTokenAmount[]",
+            "name": "destTokenAmounts",
+            "type": "tuple[]"
+          }
+        ],
+        "internalType": "struct Client.Any2EVMMessage",
+        "name": "message",
+        "type": "tuple"
+      }
     ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "currentChainSelector",
-    "outputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
-    "stateMutability": "view",
+    "name": "ccipReceive",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -173,6 +221,13 @@
   },
   {
     "inputs": [],
+    "name": "getRouter",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "indexToken",
     "outputs": [
       { "internalType": "contract IndexToken", "name": "", "type": "address" }
@@ -182,11 +237,6 @@
   },
   {
     "inputs": [
-      {
-        "internalType": "uint64",
-        "name": "_currentChainSelector",
-        "type": "uint64"
-      },
       {
         "internalType": "address payable",
         "name": "_token",
@@ -203,46 +253,16 @@
         "type": "address"
       },
       {
-        "internalType": "address payable",
-        "name": "_coreSender",
+        "internalType": "address",
+        "name": "_chainlinkToken",
         "type": "address"
       },
+      { "internalType": "address", "name": "_router", "type": "address" },
       { "internalType": "address", "name": "_weth", "type": "address" }
     ],
     "name": "initialize",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "_tokenIn", "type": "address" },
-      {
-        "internalType": "address[]",
-        "name": "_tokenInPath",
-        "type": "address[]"
-      },
-      {
-        "internalType": "uint24[]",
-        "name": "_tokenInFees",
-        "type": "uint24[]"
-      },
-      { "internalType": "uint256", "name": "_inputAmount", "type": "uint256" },
-      { "internalType": "uint256", "name": "_crossChainFee", "type": "uint256" }
-    ],
-    "name": "issuanceIndexTokens",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "_inputAmount", "type": "uint256" },
-      { "internalType": "uint256", "name": "_crossChainFee", "type": "uint256" }
-    ],
-    "name": "issuanceIndexTokensWithEth",
-    "outputs": [],
-    "stateMutability": "payable",
     "type": "function"
   },
   {
@@ -269,31 +289,6 @@
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "uint256", "name": "amountIn", "type": "uint256" },
-      {
-        "internalType": "uint256",
-        "name": "_crossChainFee",
-        "type": "uint256"
-      },
-      { "internalType": "address", "name": "_tokenOut", "type": "address" },
-      {
-        "internalType": "address[]",
-        "name": "_tokenOutPath",
-        "type": "address[]"
-      },
-      {
-        "internalType": "uint24[]",
-        "name": "_tokenOutFees",
-        "type": "uint24[]"
-      }
-    ],
-    "name": "redemption",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [],
     "name": "renounceOwnership",
     "outputs": [],
@@ -302,13 +297,31 @@
   },
   {
     "inputs": [
+      { "internalType": "uint256", "name": "_wethAmount", "type": "uint256" },
       {
-        "internalType": "address payable",
-        "name": "_coreSender",
-        "type": "address"
-      }
+        "internalType": "uint256",
+        "name": "_issuanceNonce",
+        "type": "uint256"
+      },
+      { "internalType": "uint64", "name": "_chainSelector", "type": "uint64" },
+      { "internalType": "uint256", "name": "_latestCount", "type": "uint256" }
     ],
-    "name": "setCoreSender",
+    "name": "sendIssuanceRequest",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_burnPercent", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "_redemptionNonce",
+        "type": "uint256"
+      },
+      { "internalType": "uint64", "name": "_chainSelector", "type": "uint64" }
+    ],
+    "name": "sendRedemptionRequest",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -341,6 +354,29 @@
   },
   {
     "inputs": [
+      { "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }
+    ],
+    "name": "supportsInterface",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "testData",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "testData2",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
       { "internalType": "address", "name": "newOwner", "type": "address" }
     ],
     "name": "transferOwnership",
@@ -355,6 +391,13 @@
       { "internalType": "contract IWETH", "name": "", "type": "address" }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "withdrawLink",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   { "stateMutability": "payable", "type": "receive" }
