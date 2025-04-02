@@ -9,8 +9,8 @@ import {
 import { BigInt, Address } from "@graphprotocol/graph-ts"
 import { Initialized } from "../generated/schema"
 import { Initialized as InitializedEvent } from "../generated/IndexFactoryMAG7/IndexFactoryMAG7"
-import { handleInitialized } from "../src/index-factory-mag7"
-import { createInitializedEvent } from "./test-index-factory-utils"
+import { handleInitialized } from "../src/index-factory-mag-7"
+import { createInitializedEvent } from "./index-factory-mag-7-utils"
 
 // Tests structure (matchstick-as >=0.5.0)
 // https://thegraph.com/docs/en/developer/matchstick/#tests-structure-0-5-0

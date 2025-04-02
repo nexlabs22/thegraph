@@ -1,13 +1,5 @@
 {
   "sepolia": {
-    "IndexFactoryMAG7": {
-      "address": "0x5EBD4Ac25ADbb238941086b7e2a87672f93919a4",
-      "startBlock": 6513703
-    },
-    "IndexFactoryProcessorMAG7": {
-      "address": "0x8250b30Ae818Ab30d5A03E893Cdc850bdA08E638",
-      "startBlock": 6513718
-    },
     "IndexTokenARBEI": {
       "address": "0x66B13DbCC6B107668f46174d0964030f103C3D3a",
       "startBlock": 7692066
@@ -33,6 +25,15 @@
     },
     "IndexCoreSenderCRYPTO5": {
       "address": "0xCfD47C2fE63fF89BfbC7ac80524B1954DAE84743"
+    },
+    "IndexTokenMAG7": {
+      "address": "0xcf5741a85AB5C4d65E285668B1Dc5225d8b5d7fc"
+    },
+    "IndexFactoryMAG7": {
+      "address": "0x8A9597D62f2F9ea8775c30586c4e4fa86851821c"
+    },
+    "IndexProcessorMAG7": {
+      "address": "0x7c615fF4039Dc0e83Cb40BbEB58D14ee9c04FC83"
     }
   }
 }
