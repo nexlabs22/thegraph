@@ -2,10 +2,10 @@ import { newMockEvent } from "matchstick-as"
 import { ethereum, BigInt, Address } from "@graphprotocol/graph-ts"
 import {
   Initialized,
-  Issuanced,
   OwnershipTransferred,
   Paused,
-  Redemption,
+  RequestCancelIssuance,
+  RequestCancelRedemption,
   RequestIssuance,
   RequestRedemption,
   Unpaused
@@ -24,49 +24,6 @@ export function createInitializedEvent(version: BigInt): Initialized {
   )
 
   return initializedEvent
-}
-
-export function createIssuancedEvent(
-  nonce: BigInt,
-  user: Address,
-  inputToken: Address,
-  inputAmount: BigInt,
-  outputAmount: BigInt,
-  time: BigInt
-): Issuanced {
-  let issuancedEvent = changetype<Issuanced>(newMockEvent())
-
-  issuancedEvent.parameters = new Array()
-
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam("nonce", ethereum.Value.fromUnsignedBigInt(nonce))
-  )
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam("user", ethereum.Value.fromAddress(user))
-  )
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam(
-      "inputToken",
-      ethereum.Value.fromAddress(inputToken)
-    )
-  )
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam(
-      "inputAmount",
-      ethereum.Value.fromUnsignedBigInt(inputAmount)
-    )
-  )
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam(
-      "outputAmount",
-      ethereum.Value.fromUnsignedBigInt(outputAmount)
-    )
-  )
-  issuancedEvent.parameters.push(
-    new ethereum.EventParam("time", ethereum.Value.fromUnsignedBigInt(time))
-  )
-
-  return issuancedEvent
 }
 
 export function createOwnershipTransferredEvent(
@@ -104,47 +61,94 @@ export function createPausedEvent(account: Address): Paused {
   return pausedEvent
 }
 
-export function createRedemptionEvent(
+export function createRequestCancelIssuanceEvent(
+  nonce: BigInt,
+  user: Address,
+  inputToken: Address,
+  inputAmount: BigInt,
+  outputAmount: BigInt,
+  time: BigInt
+): RequestCancelIssuance {
+  let requestCancelIssuanceEvent = changetype<RequestCancelIssuance>(
+    newMockEvent()
+  )
+
+  requestCancelIssuanceEvent.parameters = new Array()
+
+  requestCancelIssuanceEvent.parameters.push(
+    new ethereum.EventParam("nonce", ethereum.Value.fromUnsignedBigInt(nonce))
+  )
+  requestCancelIssuanceEvent.parameters.push(
+    new ethereum.EventParam("user", ethereum.Value.fromAddress(user))
+  )
+  requestCancelIssuanceEvent.parameters.push(
+    new ethereum.EventParam(
+      "inputToken",
+      ethereum.Value.fromAddress(inputToken)
+    )
+  )
+  requestCancelIssuanceEvent.parameters.push(
+    new ethereum.EventParam(
+      "inputAmount",
+      ethereum.Value.fromUnsignedBigInt(inputAmount)
+    )
+  )
+  requestCancelIssuanceEvent.parameters.push(
+    new ethereum.EventParam(
+      "outputAmount",
+      ethereum.Value.fromUnsignedBigInt(outputAmount)
+    )
+  )
+  requestCancelIssuanceEvent.parameters.push(
+    new ethereum.EventParam("time", ethereum.Value.fromUnsignedBigInt(time))
+  )
+
+  return requestCancelIssuanceEvent
+}
+
+export function createRequestCancelRedemptionEvent(
   nonce: BigInt,
   user: Address,
   outputToken: Address,
   inputAmount: BigInt,
   outputAmount: BigInt,
   time: BigInt
-): Redemption {
-  let redemptionEvent = changetype<Redemption>(newMockEvent())
+): RequestCancelRedemption {
+  let requestCancelRedemptionEvent = changetype<RequestCancelRedemption>(
+    newMockEvent()
+  )
 
-  redemptionEvent.parameters = new Array()
+  requestCancelRedemptionEvent.parameters = new Array()
 
-  redemptionEvent.parameters.push(
+  requestCancelRedemptionEvent.parameters.push(
     new ethereum.EventParam("nonce", ethereum.Value.fromUnsignedBigInt(nonce))
   )
-  redemptionEvent.parameters.push(
+  requestCancelRedemptionEvent.parameters.push(
     new ethereum.EventParam("user", ethereum.Value.fromAddress(user))
   )
-  redemptionEvent.parameters.push(
+  requestCancelRedemptionEvent.parameters.push(
     new ethereum.EventParam(
       "outputToken",
       ethereum.Value.fromAddress(outputToken)
     )
   )
-  redemptionEvent.parameters.push(
+  requestCancelRedemptionEvent.parameters.push(
     new ethereum.EventParam(
       "inputAmount",
       ethereum.Value.fromUnsignedBigInt(inputAmount)
     )
   )
-  redemptionEvent.parameters.push(
+  requestCancelRedemptionEvent.parameters.push(
     new ethereum.EventParam(
       "outputAmount",
       ethereum.Value.fromUnsignedBigInt(outputAmount)
     )
   )
-  redemptionEvent.parameters.push(
+  requestCancelRedemptionEvent.parameters.push(
     new ethereum.EventParam("time", ethereum.Value.fromUnsignedBigInt(time))
   )
 
-  return redemptionEvent
+  return requestCancelRedemptionEvent
 }
 
 export function createRequestIssuanceEvent(

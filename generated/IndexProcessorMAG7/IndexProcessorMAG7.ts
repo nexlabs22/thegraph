@@ -28,6 +28,86 @@ export class Initialized__Params {
   }
 }
 
+export class IssuanceCancelled extends ethereum.Event {
+  get params(): IssuanceCancelled__Params {
+    return new IssuanceCancelled__Params(this);
+  }
+}
+
+export class IssuanceCancelled__Params {
+  _event: IssuanceCancelled;
+
+  constructor(event: IssuanceCancelled) {
+    this._event = event;
+  }
+
+  get nonce(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get user(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get inputToken(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get inputAmount(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get outputAmount(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get time(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+}
+
+export class Issuanced extends ethereum.Event {
+  get params(): Issuanced__Params {
+    return new Issuanced__Params(this);
+  }
+}
+
+export class Issuanced__Params {
+  _event: Issuanced;
+
+  constructor(event: Issuanced) {
+    this._event = event;
+  }
+
+  get nonce(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get user(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get inputToken(): Address {
+    return this._event.parameters[2].value.toAddress();
+  }
+
+  get inputAmount(): BigInt {
+    return this._event.parameters[3].value.toBigInt();
+  }
+
+  get outputAmount(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get price(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
+  }
+
+  get time(): BigInt {
+    return this._event.parameters[6].value.toBigInt();
+  }
+}
+
 export class OwnershipTransferred extends ethereum.Event {
   get params(): OwnershipTransferred__Params {
     return new OwnershipTransferred__Params(this);
@@ -68,54 +148,16 @@ export class Paused__Params {
   }
 }
 
-export class RequestCancelIssuance extends ethereum.Event {
-  get params(): RequestCancelIssuance__Params {
-    return new RequestCancelIssuance__Params(this);
+export class Redemption extends ethereum.Event {
+  get params(): Redemption__Params {
+    return new Redemption__Params(this);
   }
 }
 
-export class RequestCancelIssuance__Params {
-  _event: RequestCancelIssuance;
+export class Redemption__Params {
+  _event: Redemption;
 
-  constructor(event: RequestCancelIssuance) {
-    this._event = event;
-  }
-
-  get nonce(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get user(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get inputToken(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
-  get inputAmount(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get outputAmount(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
-  }
-
-  get time(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
-  }
-}
-
-export class RequestCancelRedemption extends ethereum.Event {
-  get params(): RequestCancelRedemption__Params {
-    return new RequestCancelRedemption__Params(this);
-  }
-}
-
-export class RequestCancelRedemption__Params {
-  _event: RequestCancelRedemption;
-
-  constructor(event: RequestCancelRedemption) {
+  constructor(event: Redemption) {
     this._event = event;
   }
 
@@ -139,59 +181,25 @@ export class RequestCancelRedemption__Params {
     return this._event.parameters[4].value.toBigInt();
   }
 
-  get time(): BigInt {
+  get price(): BigInt {
     return this._event.parameters[5].value.toBigInt();
-  }
-}
-
-export class RequestIssuance extends ethereum.Event {
-  get params(): RequestIssuance__Params {
-    return new RequestIssuance__Params(this);
-  }
-}
-
-export class RequestIssuance__Params {
-  _event: RequestIssuance;
-
-  constructor(event: RequestIssuance) {
-    this._event = event;
-  }
-
-  get nonce(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-
-  get user(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get inputToken(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
-  get inputAmount(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
-  }
-
-  get outputAmount(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
   }
 
   get time(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
+    return this._event.parameters[6].value.toBigInt();
   }
 }
 
-export class RequestRedemption extends ethereum.Event {
-  get params(): RequestRedemption__Params {
-    return new RequestRedemption__Params(this);
+export class RedemptionCancelled extends ethereum.Event {
+  get params(): RedemptionCancelled__Params {
+    return new RedemptionCancelled__Params(this);
   }
 }
 
-export class RequestRedemption__Params {
-  _event: RequestRedemption;
+export class RedemptionCancelled__Params {
+  _event: RedemptionCancelled;
 
-  constructor(event: RequestRedemption) {
+  constructor(event: RedemptionCancelled) {
     this._event = event;
   }
 
@@ -238,9 +246,30 @@ export class Unpaused__Params {
   }
 }
 
-export class IndexFactoryMAG7 extends ethereum.SmartContract {
-  static bind(address: Address): IndexFactoryMAG7 {
-    return new IndexFactoryMAG7("IndexFactoryMAG7", address);
+export class IndexProcessorMAG7 extends ethereum.SmartContract {
+  static bind(address: Address): IndexProcessorMAG7 {
+    return new IndexProcessorMAG7("IndexProcessorMAG7", address);
+  }
+
+  checkMultical(_reqeustId: BigInt): boolean {
+    let result = super.call("checkMultical", "checkMultical(uint256):(bool)", [
+      ethereum.Value.fromUnsignedBigInt(_reqeustId),
+    ]);
+
+    return result[0].toBoolean();
+  }
+
+  try_checkMultical(_reqeustId: BigInt): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "checkMultical",
+      "checkMultical(uint256):(bool)",
+      [ethereum.Value.fromUnsignedBigInt(_reqeustId)],
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
   factoryStorage(): Address {
@@ -285,29 +314,6 @@ export class IndexFactoryMAG7 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  issuanceIndexTokens(_inputAmount: BigInt): BigInt {
-    let result = super.call(
-      "issuanceIndexTokens",
-      "issuanceIndexTokens(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_inputAmount)],
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_issuanceIndexTokens(_inputAmount: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "issuanceIndexTokens",
-      "issuanceIndexTokens(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(_inputAmount)],
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   owner(): Address {
     let result = super.call("owner", "owner():(address)", []);
 
@@ -338,23 +344,29 @@ export class IndexFactoryMAG7 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  redemption(_inputAmount: BigInt): BigInt {
-    let result = super.call("redemption", "redemption(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(_inputAmount),
-    ]);
+  setFunctionsOracle(_functionsOracle: Address): boolean {
+    let result = super.call(
+      "setFunctionsOracle",
+      "setFunctionsOracle(address):(bool)",
+      [ethereum.Value.fromAddress(_functionsOracle)],
+    );
 
-    return result[0].toBigInt();
+    return result[0].toBoolean();
   }
 
-  try_redemption(_inputAmount: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("redemption", "redemption(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(_inputAmount),
-    ]);
+  try_setFunctionsOracle(
+    _functionsOracle: Address,
+  ): ethereum.CallResult<boolean> {
+    let result = super.tryCall(
+      "setFunctionsOracle",
+      "setFunctionsOracle(address):(bool)",
+      [ethereum.Value.fromAddress(_functionsOracle)],
+    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
+    return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
   setIndexFactoryStorage(_factoryStorage: Address): boolean {
@@ -409,20 +421,20 @@ export class ConstructorCall__Outputs {
   }
 }
 
-export class CancelIssuanceCall extends ethereum.Call {
-  get inputs(): CancelIssuanceCall__Inputs {
-    return new CancelIssuanceCall__Inputs(this);
+export class CompleteCancelIssuanceCall extends ethereum.Call {
+  get inputs(): CompleteCancelIssuanceCall__Inputs {
+    return new CompleteCancelIssuanceCall__Inputs(this);
   }
 
-  get outputs(): CancelIssuanceCall__Outputs {
-    return new CancelIssuanceCall__Outputs(this);
+  get outputs(): CompleteCancelIssuanceCall__Outputs {
+    return new CompleteCancelIssuanceCall__Outputs(this);
   }
 }
 
-export class CancelIssuanceCall__Inputs {
-  _call: CancelIssuanceCall;
+export class CompleteCancelIssuanceCall__Inputs {
+  _call: CompleteCancelIssuanceCall;
 
-  constructor(call: CancelIssuanceCall) {
+  constructor(call: CompleteCancelIssuanceCall) {
     this._call = call;
   }
 
@@ -431,28 +443,28 @@ export class CancelIssuanceCall__Inputs {
   }
 }
 
-export class CancelIssuanceCall__Outputs {
-  _call: CancelIssuanceCall;
+export class CompleteCancelIssuanceCall__Outputs {
+  _call: CompleteCancelIssuanceCall;
 
-  constructor(call: CancelIssuanceCall) {
+  constructor(call: CompleteCancelIssuanceCall) {
     this._call = call;
   }
 }
 
-export class CancelRedemptionCall extends ethereum.Call {
-  get inputs(): CancelRedemptionCall__Inputs {
-    return new CancelRedemptionCall__Inputs(this);
+export class CompleteCancelRedemptionCall extends ethereum.Call {
+  get inputs(): CompleteCancelRedemptionCall__Inputs {
+    return new CompleteCancelRedemptionCall__Inputs(this);
   }
 
-  get outputs(): CancelRedemptionCall__Outputs {
-    return new CancelRedemptionCall__Outputs(this);
+  get outputs(): CompleteCancelRedemptionCall__Outputs {
+    return new CompleteCancelRedemptionCall__Outputs(this);
   }
 }
 
-export class CancelRedemptionCall__Inputs {
-  _call: CancelRedemptionCall;
+export class CompleteCancelRedemptionCall__Inputs {
+  _call: CompleteCancelRedemptionCall;
 
-  constructor(call: CancelRedemptionCall) {
+  constructor(call: CompleteCancelRedemptionCall) {
     this._call = call;
   }
 
@@ -461,10 +473,70 @@ export class CancelRedemptionCall__Inputs {
   }
 }
 
-export class CancelRedemptionCall__Outputs {
-  _call: CancelRedemptionCall;
+export class CompleteCancelRedemptionCall__Outputs {
+  _call: CompleteCancelRedemptionCall;
 
-  constructor(call: CancelRedemptionCall) {
+  constructor(call: CompleteCancelRedemptionCall) {
+    this._call = call;
+  }
+}
+
+export class CompleteIssuanceCall extends ethereum.Call {
+  get inputs(): CompleteIssuanceCall__Inputs {
+    return new CompleteIssuanceCall__Inputs(this);
+  }
+
+  get outputs(): CompleteIssuanceCall__Outputs {
+    return new CompleteIssuanceCall__Outputs(this);
+  }
+}
+
+export class CompleteIssuanceCall__Inputs {
+  _call: CompleteIssuanceCall;
+
+  constructor(call: CompleteIssuanceCall) {
+    this._call = call;
+  }
+
+  get _issuanceNonce(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
+}
+
+export class CompleteIssuanceCall__Outputs {
+  _call: CompleteIssuanceCall;
+
+  constructor(call: CompleteIssuanceCall) {
+    this._call = call;
+  }
+}
+
+export class CompleteRedemptionCall extends ethereum.Call {
+  get inputs(): CompleteRedemptionCall__Inputs {
+    return new CompleteRedemptionCall__Inputs(this);
+  }
+
+  get outputs(): CompleteRedemptionCall__Outputs {
+    return new CompleteRedemptionCall__Outputs(this);
+  }
+}
+
+export class CompleteRedemptionCall__Inputs {
+  _call: CompleteRedemptionCall;
+
+  constructor(call: CompleteRedemptionCall) {
+    this._call = call;
+  }
+
+  get _redemptionNonce(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
+}
+
+export class CompleteRedemptionCall__Outputs {
+  _call: CompleteRedemptionCall;
+
+  constructor(call: CompleteRedemptionCall) {
     this._call = call;
   }
 }
@@ -503,97 +575,33 @@ export class InitializeCall__Outputs {
   }
 }
 
-export class IssuanceIndexTokensCall extends ethereum.Call {
-  get inputs(): IssuanceIndexTokensCall__Inputs {
-    return new IssuanceIndexTokensCall__Inputs(this);
+export class MulticalCall extends ethereum.Call {
+  get inputs(): MulticalCall__Inputs {
+    return new MulticalCall__Inputs(this);
   }
 
-  get outputs(): IssuanceIndexTokensCall__Outputs {
-    return new IssuanceIndexTokensCall__Outputs(this);
+  get outputs(): MulticalCall__Outputs {
+    return new MulticalCall__Outputs(this);
   }
 }
 
-export class IssuanceIndexTokensCall__Inputs {
-  _call: IssuanceIndexTokensCall;
+export class MulticalCall__Inputs {
+  _call: MulticalCall;
 
-  constructor(call: IssuanceIndexTokensCall) {
+  constructor(call: MulticalCall) {
     this._call = call;
   }
 
-  get _inputAmount(): BigInt {
+  get _requestId(): BigInt {
     return this._call.inputValues[0].value.toBigInt();
   }
 }
 
-export class IssuanceIndexTokensCall__Outputs {
-  _call: IssuanceIndexTokensCall;
+export class MulticalCall__Outputs {
+  _call: MulticalCall;
 
-  constructor(call: IssuanceIndexTokensCall) {
+  constructor(call: MulticalCall) {
     this._call = call;
-  }
-
-  get value0(): BigInt {
-    return this._call.outputValues[0].value.toBigInt();
-  }
-}
-
-export class PauseCall extends ethereum.Call {
-  get inputs(): PauseCall__Inputs {
-    return new PauseCall__Inputs(this);
-  }
-
-  get outputs(): PauseCall__Outputs {
-    return new PauseCall__Outputs(this);
-  }
-}
-
-export class PauseCall__Inputs {
-  _call: PauseCall;
-
-  constructor(call: PauseCall) {
-    this._call = call;
-  }
-}
-
-export class PauseCall__Outputs {
-  _call: PauseCall;
-
-  constructor(call: PauseCall) {
-    this._call = call;
-  }
-}
-
-export class RedemptionCall extends ethereum.Call {
-  get inputs(): RedemptionCall__Inputs {
-    return new RedemptionCall__Inputs(this);
-  }
-
-  get outputs(): RedemptionCall__Outputs {
-    return new RedemptionCall__Outputs(this);
-  }
-}
-
-export class RedemptionCall__Inputs {
-  _call: RedemptionCall;
-
-  constructor(call: RedemptionCall) {
-    this._call = call;
-  }
-
-  get _inputAmount(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class RedemptionCall__Outputs {
-  _call: RedemptionCall;
-
-  constructor(call: RedemptionCall) {
-    this._call = call;
-  }
-
-  get value0(): BigInt {
-    return this._call.outputValues[0].value.toBigInt();
   }
 }
 
@@ -650,6 +658,10 @@ export class SetFunctionsOracleCall__Outputs {
 
   constructor(call: SetFunctionsOracleCall) {
     this._call = call;
+  }
+
+  get value0(): boolean {
+    return this._call.outputValues[0].value.toBoolean();
   }
 }
 
@@ -713,32 +725,6 @@ export class TransferOwnershipCall__Outputs {
   _call: TransferOwnershipCall;
 
   constructor(call: TransferOwnershipCall) {
-    this._call = call;
-  }
-}
-
-export class UnpauseCall extends ethereum.Call {
-  get inputs(): UnpauseCall__Inputs {
-    return new UnpauseCall__Inputs(this);
-  }
-
-  get outputs(): UnpauseCall__Outputs {
-    return new UnpauseCall__Outputs(this);
-  }
-}
-
-export class UnpauseCall__Inputs {
-  _call: UnpauseCall;
-
-  constructor(call: UnpauseCall) {
-    this._call = call;
-  }
-}
-
-export class UnpauseCall__Outputs {
-  _call: UnpauseCall;
-
-  constructor(call: UnpauseCall) {
     this._call = call;
   }
 }
